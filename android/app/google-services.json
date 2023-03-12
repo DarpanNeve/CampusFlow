@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "140073654540",
+    "project_id": "pccoe-final-3b92c",
+    "storage_bucket": "pccoe-final-3b92c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140073654540:android:4046ad5fb20dde9e219129",
+        "android_client_info": {
+          "package_name": "com.Pccoe.student"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140073654540-kh9cr1d5kfqvn6tj3v5gad51eo5sq0kf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGWOaXHfrwHwSb4df2mUCWYMhkDM4rFyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140073654540-kh9cr1d5kfqvn6tj3v5gad51eo5sq0kf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
