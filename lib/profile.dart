@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           children: const <Widget>[
             Text("Data"),
-            Signoutbutton(),
+            SignOutButton(),
 
           ],
         ),
@@ -24,8 +24,8 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-class Signoutbutton extends StatelessWidget{
-  const Signoutbutton({super.key});
+class SignOutButton extends StatelessWidget{
+  const SignOutButton({super.key});
 
   @override
   Widget build(BuildContext context) {
