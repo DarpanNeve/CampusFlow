@@ -23,13 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Hello",
       home: Scaffold(
-        body: Container(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.lightBlue.shade300, Colors.white])),
           child: ListView(
             children: <Widget>[
               Center(
@@ -48,7 +43,7 @@ class MyApp extends StatelessWidget {
                       height: 25,
                     ),
                     const SizedBox(
-                      width: 400,
+                      width: 300,
                       child: TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
@@ -60,7 +55,7 @@ class MyApp extends StatelessWidget {
                       height: 25,
                     ),
                     const SizedBox(
-                      width: 400,
+                      width: 300,
                       child: TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),

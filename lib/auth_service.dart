@@ -11,7 +11,7 @@ class AuthService {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
-            return const ProfilePage();
+            return  OptionMenuPage();
           } else {
             return const MyApp();
           }
@@ -48,7 +48,7 @@ class AuthService {
   }
 
   signOut() async {
-
+    await GoogleSignIn().signOut();
     await FirebaseAuth.instance.signOut();
   }
 }
