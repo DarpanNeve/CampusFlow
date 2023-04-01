@@ -1,9 +1,8 @@
-import 'dart:convert';
 
+
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:student/Model.dart';
-
+import 'fetch_data.dart';
 class MobileTimeTable extends StatelessWidget {
   const MobileTimeTable({Key? key}) : super(key: key);
 
@@ -24,44 +23,24 @@ class MobileTimeTable extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: const <Widget>[
-            listdata(),
+            AcdYearsDropdown(),
+            ListData(),
           ],
         ),
-
       ),
     );
   }
 }
 
-class listdata extends StatefulWidget {
-  const listdata({Key? key}) : super(key: key);
+class ListData extends StatefulWidget {
+  const ListData({Key? key}) : super(key: key);
 
   @override
-  State<listdata> createState() => _listdataState();
+  State<ListData> createState() => _ListDataState();
 }
 
-class _listdataState extends State<listdata> {
-  List<Model> postList = [];
-  String url="http://117.198.136.16/fetch_input.php";
+class _ListDataState extends State<ListData> {
 
-  Future<List<Model>> getPostApi() async {
-    print("Hello");
-    final response = await http.post(Uri.parse(url), body: {
-      "Day": "Monday",
-      "Division": "A",
-      "Batch": "1",
-    });
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      for (Map i in data) {
-        postList.add(Model.fromJson(i));
-      }
-
-      return postList;
-    } else {
-      return postList;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +49,7 @@ class _listdataState extends State<listdata> {
         future: getPostApi(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Text("loading");
+            return const Text("loading");
           } else {
             return ListView.builder(
               itemCount: postList.length,
@@ -82,7 +61,7 @@ class _listdataState extends State<listdata> {
                     children: [
                       Expanded(
                         child: Column(
-                          children:const [
+                          children: const [
                             Text("Start:"),
                             Text("End:"),
                           ],
@@ -112,6 +91,82 @@ class _listdataState extends State<listdata> {
             );
           }
         },
+      ),
+    );
+  }
+}
+
+class AcdYearsDropdown extends StatefulWidget {
+  const AcdYearsDropdown({super.key});
+
+  @override
+  State<AcdYearsDropdown> createState() => _AcdYearsDropdownState();
+}
+
+class _AcdYearsDropdownState extends State<AcdYearsDropdown> {
+  var listOfOptions = ["A", "S.Y.", "T.Y.", "B.E."];
+  String? selectedValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 0.00, vertical: 20.00),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          DropdownButton2<String>(
+            hint: const Text("Division", style: TextStyle(fontSize: 16)),
+
+            buttonHeight: 40,
+            // dropdownMaxHeight: 130,
+            // isExpanded: true,
+            value: selectedValue,
+            buttonDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black)),
+            items: listOfOptions.map<DropdownMenuItem<String>>((String val) {
+              return DropdownMenuItem<String>(
+                value: val,
+                child: Text(
+                  val,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+              );
+            }).toList(),
+            onChanged: (String? value) {
+              setState(() {
+                selectedValue = value ?? "";
+              });
+            },
+          ),
+          DropdownButton2<String>(
+            hint: const Text("Batch", style: TextStyle(fontSize: 16)),
+
+            buttonHeight: 40,
+            // dropdownMaxHeight: 130,
+            // isExpanded: true,
+            value: selectedValue,
+            buttonDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.black)),
+            items: listOfOptions.map<DropdownMenuItem<String>>((String val) {
+              return DropdownMenuItem<String>(
+                value: val,
+                child: Text(
+                  val,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+              );
+            }).toList(),
+            onChanged: (String? value) {
+              setState(() {
+                selectedValue = value ?? "";
+              });
+            },
+          ),
+        ],
       ),
     );
   }

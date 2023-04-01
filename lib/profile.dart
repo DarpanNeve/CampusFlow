@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student/mobile_time_table.dart';
-import 'auth_service.dart';
+import 'firebase_data/auth_service.dart';
 
 class OptionMenuPage extends StatelessWidget {
   final String studentName = "Darpan";
