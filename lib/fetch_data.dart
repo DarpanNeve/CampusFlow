@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 
 List<Model> postList = [];
-String url = "http://117.198.136.16/fetch_input.php";
+String url = "http://10.10.1.34/fetch_input.php";
 Future<List<Model>> getPostApi() async {
   final response = await http.post(Uri.parse(url), body: {
     "Day": "Monday",

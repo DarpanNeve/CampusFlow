@@ -1,8 +1,9 @@
-
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'fetch_data.dart';
+
+bool _isButtonClicked = true;
+
 class MobileTimeTable extends StatelessWidget {
   const MobileTimeTable({Key? key}) : super(key: key);
 
@@ -20,10 +21,10 @@ class MobileTimeTable extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: const <Widget>[
             AcdYearsDropdown(),
+            SubmitButton(),
             ListData(),
           ],
         ),
@@ -40,17 +41,13 @@ class ListData extends StatefulWidget {
 }
 
 class _ListDataState extends State<ListData> {
-
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder(
         future: getPostApi(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Text("loading");
-          } else {
+          if (snapshot.hasData ) {
             return ListView.builder(
               itemCount: postList.length,
               itemBuilder: (context, index) {
@@ -89,6 +86,8 @@ class _ListDataState extends State<ListData> {
                 );
               },
             );
+          } else {
+            return const Text("loading");
           }
         },
       ),
@@ -104,27 +103,30 @@ class AcdYearsDropdown extends StatefulWidget {
 }
 
 class _AcdYearsDropdownState extends State<AcdYearsDropdown> {
-  var listOfOptions = ["A", "S.Y.", "T.Y.", "B.E."];
-  String? selectedValue;
+  var batchOptions = ["1", "2", "3"];
+  var divisionOptions = [""];
+  var dayOptions = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  String? selectedBatch;
+  String? selectedDivision;
+  String? selectedDay;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0.00, vertical: 20.00),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
+      padding: const EdgeInsets.symmetric(horizontal: 20.00, vertical: 10.00),
+      child: Column(
+        children: <Widget>[
           DropdownButton2<String>(
-            hint: const Text("Division", style: TextStyle(fontSize: 16)),
+            hint: const Text("Day", style: TextStyle(fontSize: 16)),
 
-            buttonHeight: 40,
             // dropdownMaxHeight: 130,
-            // isExpanded: true,
-            value: selectedValue,
+            isExpanded: true,
+            value: selectedDay,
+
             buttonDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.black)),
-            items: listOfOptions.map<DropdownMenuItem<String>>((String val) {
+              borderRadius: BorderRadius.circular(12),
+            ),
+            items: dayOptions.map<DropdownMenuItem<String>>((String val) {
               return DropdownMenuItem<String>(
                 value: val,
                 child: Text(
@@ -136,38 +138,95 @@ class _AcdYearsDropdownState extends State<AcdYearsDropdown> {
             }).toList(),
             onChanged: (String? value) {
               setState(() {
-                selectedValue = value ?? "";
+                selectedDay = value ?? "";
               });
             },
           ),
-          DropdownButton2<String>(
-            hint: const Text("Batch", style: TextStyle(fontSize: 16)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Flexible(
+                flex: 1,
+                child: DropdownButton2<String>(
+                  hint: const Text("Batch", style: TextStyle(fontSize: 16)),
 
-            buttonHeight: 40,
-            // dropdownMaxHeight: 130,
-            // isExpanded: true,
-            value: selectedValue,
-            buttonDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.black)),
-            items: listOfOptions.map<DropdownMenuItem<String>>((String val) {
-              return DropdownMenuItem<String>(
-                value: val,
-                child: Text(
-                  val,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w500),
+                  // dropdownMaxHeight: 130,
+                  isExpanded: true,
+                  value: selectedBatch,
+                  buttonDecoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  items: batchOptions.map<DropdownMenuItem<String>>((String val) {
+                    return DropdownMenuItem<String>(
+                      value: val,
+                      child: Text(
+                        val,
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      selectedBatch = value ?? "";
+                    });
+                  },
                 ),
-              );
-            }).toList(),
-            onChanged: (String? value) {
-              setState(() {
-                selectedValue = value ?? "";
-              });
-            },
+              ),
+              Flexible(
+                flex: 1,
+                child: DropdownButton2<String>(
+                  hint: const Text("Division", style: TextStyle(fontSize: 16)),
+
+                  //buttonHeight: 40,
+                  // dropdownMaxHeight: 130,
+                   isExpanded: true,
+                  value: selectedDivision,
+                  buttonDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      ),
+                  items:
+                      divisionOptions.map<DropdownMenuItem<String>>((String val) {
+                    return DropdownMenuItem<String>(
+                      value: val,
+                      child: Text(
+                        val,
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      selectedDivision = value ?? "";
+                    });
+                  },
+                ),
+              ),
+            ],
           ),
         ],
       ),
     );
+  }
+}
+
+class SubmitButton extends StatefulWidget {
+  const SubmitButton({Key? key}) : super(key: key);
+
+  @override
+  State<SubmitButton> createState() => _SubmitButtonState();
+}
+
+class _SubmitButtonState extends State<SubmitButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+        onPressed: () {
+          setState(() {
+            _isButtonClicked = true;
+          });
+        },
+        child: const Text("Submit"));
   }
 }

@@ -11,7 +11,9 @@ class AuthService {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
-            return  OptionMenuPage();
+            String? email=snapshot.data?.email;
+
+            return const OptionMenuPage();
           } else {
             return const MyApp();
           }

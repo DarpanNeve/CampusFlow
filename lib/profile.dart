@@ -3,7 +3,8 @@ import 'package:student/mobile_time_table.dart';
 import 'firebase_data/auth_service.dart';
 
 class OptionMenuPage extends StatelessWidget {
-  final String studentName = "Darpan";
+  final String studentName = "";
+
   final String studentDept = "ENTc";
   final String studentRollNo = "SYETB127";
   final int studentYear = 2023;
@@ -59,7 +60,7 @@ class OptionMenuPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 AuthService().signOut();
               },
               child: const Icon(
@@ -141,10 +142,11 @@ class OptionMenuPage extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => listOfOptions[index][2]),
+                        MaterialPageRoute(
+                            builder: (context) => listOfOptions[index][2]),
                       );
                     },
                     child: Container(
