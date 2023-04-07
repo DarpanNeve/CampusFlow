@@ -102,7 +102,7 @@ class OptionMenuPage extends StatelessWidget {
                           const CircleAvatar(
                             radius: 40,
                             backgroundImage:
-                                AssetImage("assets/images/googlelogo.png"),
+                                AssetImage("assets/images/google_logo.png"),
                             backgroundColor: Colors.transparent,
                           ),
                           const SizedBox(

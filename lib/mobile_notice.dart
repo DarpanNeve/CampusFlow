@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'Model.dart';
 class MobileNotice extends StatelessWidget {
   const MobileNotice({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,8 +31,13 @@ class ShowNotices extends StatefulWidget {
 }
 
 class _ShowNoticesState extends State<ShowNotices> {
+  List<Model> roomateDataList=[];
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ListView.builder(itemBuilder: (BuildContext context, int index) {
+      return null;
+
+
+    },);
   }
 }

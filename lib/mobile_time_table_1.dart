@@ -66,6 +66,8 @@ class ListData extends StatefulWidget {
 
 class _ListDataState extends State<ListData> {
   List<Model> postList = [];
+  List<Model> postList1 = [];
+
   String url = "http://campusflow.pcethosting.com/fetch_input.php";
 
   Future<List<Model>> getPostApi() async {
@@ -84,7 +86,8 @@ class _ListDataState extends State<ListData> {
       return postList;
     }
   }
-  Future refresh() async{
+
+  Future refresh() async {
     final response = await http.post(Uri.parse(url), body: {
       "Day": "Tuesday ",
       "Division": "A",
@@ -93,26 +96,70 @@ class _ListDataState extends State<ListData> {
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
-        postList.add(Model.fromJson(i));
+        postList1.add(Model.fromJson(i));
       }
-      return postList;
+      return postList1;
     } else {
-      return postList;
+      return postList1;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: <Widget>[
+      children: [
         TextButton(
-            onPressed: () {
-              setState(() {
-                refresh();
-              });
+          onPressed: () {
+            setState(() {
+              refresh();
+            });
+          },
+          child: const Text("Submit"),
+        ),
+        if (postList.isEmpty)
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: postList.length,
+            itemBuilder: (content, index) {
+              return Card(
+                color: Colors.lightBlue,
+                margin: const EdgeInsetsDirectional.all(5.00),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: const [
+                          Text("Start:"),
+                          Text("End:"),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(postList[index].start),
+                          Text(postList[index].end),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(postList[index].subject),
+                          Text(postList[index].classroom),
+                          Text(postList[index].teacher),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
-            child: const Text("Submit")),
-        FutureBuilder(
+          )
+        else
+         const Text("Loading"),
+
+        /*FutureBuilder(
           future: getPostApi(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -159,7 +206,7 @@ class _ListDataState extends State<ListData> {
               return const Text("loading");
             }
           },
-        ),
+        ),*/
       ],
     );
   }

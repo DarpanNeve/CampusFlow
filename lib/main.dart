@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                     ),
                     const Image(
                       width: 200,
-                      image: AssetImage('assets/images/collegelogo.png'),
+                      image: AssetImage('assets/images/college_logo.png'),
                     ),
                     const SizedBox(
                       height: 25,
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
                         const MyApp();
                       },
                       child: Image.asset(
-                        'assets/images/googlelogo.png',
+                        'assets/images/google_logo.png',
                         fit: BoxFit.cover,
                         width: 50,
                       ),
@@ -117,7 +117,7 @@ class AnotherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
-        await AuthService().signInWithGoogle();
+        AuthService().signInWithGoogle();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const MyApp()),
