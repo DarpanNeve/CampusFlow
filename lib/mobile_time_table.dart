@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'fetch_data.dart';
+import 'Model.dart';
+import 'package:http/http.dart' as http;
 
-bool _isButtonClicked = true;
 
 class MobileTimeTable extends StatelessWidget {
   const MobileTimeTable({Key? key}) : super(key: key);
@@ -39,15 +41,32 @@ class ListData extends StatefulWidget {
   @override
   State<ListData> createState() => _ListDataState();
 }
-
 class _ListDataState extends State<ListData> {
+  List<Model> postList = [];
+  String url = "http://117.198.136.16/fetch_input.php";
+  Future<List<Model>> getPostApi() async {
+    final response = await http.post(Uri.parse(url), body: {
+      "Day": "Monday",
+      "Division": "A",
+      "Batch": "1",
+    });
+    var data = jsonDecode(response.body.toString());
+    if (response.statusCode == 200) {
+      for (Map i in data) {
+        postList.add(Model.fromJson(i));
+      }
+      return postList;
+    } else {
+      return postList;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder(
         future: getPostApi(),
         builder: (context, snapshot) {
-          if (snapshot.hasData ) {
+          if (snapshot.hasData) {
             return ListView.builder(
               itemCount: postList.length,
               itemBuilder: (context, index) {
@@ -122,9 +141,10 @@ class _AcdYearsDropdownState extends State<AcdYearsDropdown> {
             // dropdownMaxHeight: 130,
             isExpanded: true,
             value: selectedDay,
-
-            buttonDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
+            buttonStyleData: ButtonStyleData(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
             items: dayOptions.map<DropdownMenuItem<String>>((String val) {
               return DropdownMenuItem<String>(
@@ -153,10 +173,13 @@ class _AcdYearsDropdownState extends State<AcdYearsDropdown> {
                   // dropdownMaxHeight: 130,
                   isExpanded: true,
                   value: selectedBatch,
-                  buttonDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
+                  buttonStyleData: ButtonStyleData(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                  items: batchOptions.map<DropdownMenuItem<String>>((String val) {
+                  items:
+                      batchOptions.map<DropdownMenuItem<String>>((String val) {
                     return DropdownMenuItem<String>(
                       value: val,
                       child: Text(
@@ -180,13 +203,15 @@ class _AcdYearsDropdownState extends State<AcdYearsDropdown> {
 
                   //buttonHeight: 40,
                   // dropdownMaxHeight: 130,
-                   isExpanded: true,
+                  isExpanded: true,
                   value: selectedDivision,
-                  buttonDecoration: BoxDecoration(
+                  buttonStyleData: ButtonStyleData(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      ),
-                  items:
-                      divisionOptions.map<DropdownMenuItem<String>>((String val) {
+                    ),
+                  ),
+                  items: divisionOptions
+                      .map<DropdownMenuItem<String>>((String val) {
                     return DropdownMenuItem<String>(
                       value: val,
                       child: Text(
@@ -224,7 +249,7 @@ class _SubmitButtonState extends State<SubmitButton> {
     return TextButton(
         onPressed: () {
           setState(() {
-            _isButtonClicked = true;
+
           });
         },
         child: const Text("Submit"));
