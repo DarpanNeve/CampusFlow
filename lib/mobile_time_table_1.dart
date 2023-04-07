@@ -4,6 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'Model.dart';
 import 'package:http/http.dart' as http;
+import 'main.dart';
 
 var batchOptions = ["1", "2", "3"];
 var divisionOptions = [
@@ -29,8 +30,8 @@ String? selectedBatch;
 String? selectedDivision;
 String? selectedDay;
 
-class MobileTimeTable extends StatelessWidget {
-  const MobileTimeTable({Key? key}) : super(key: key);
+class MobileTimeTable1 extends StatelessWidget {
+  const MobileTimeTable1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +46,14 @@ class MobileTimeTable extends StatelessWidget {
           ),
           backgroundColor: Colors.white,
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const <Widget>[
-            AcdYearsDropdown(),
-            ListData(),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const <Widget>[
+              AcdYearsDropdown(),
+              ListData(),
+            ],
+          ),
         ),
       ),
     );
@@ -68,36 +71,26 @@ class _ListDataState extends State<ListData> {
   List<Model> postList = [];
   List<Model> postList1 = [];
 
-  String url = "http://campusflow.pcethosting.com/fetch_input.php";
-
-  Future<List<Model>> getPostApi() async {
-    final response = await http.post(Uri.parse(url), body: {
-      "Day": "Monday",
-      "Division": "A",
-      "Batch": "1",
+  Future<List<Model>> refresh() async {
+    setState(() {
+      postList=[];
+      postList1=[];
     });
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      for (Map i in data) {
-        postList.add(Model.fromJson(i));
-      }
-      return postList;
-    } else {
-      return postList;
-    }
-  }
-
-  Future refresh() async {
-    final response = await http.post(Uri.parse(url), body: {
-      "Day": "Tuesday ",
-      "Division": "A",
-      "Batch": "1",
+    final response = await http.post(Uri.parse("$url/fetch_input.php"), body: {
+      "Day":"$selectedDay",
+      "Division":"$selectedDivision",
+      "Batch":"$selectedBatch",
     });
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
         postList1.add(Model.fromJson(i));
       }
+      print(postList1.toString());
+      setState(() {
+        postList=postList1;
+      });
+      print(postList);
       return postList1;
     } else {
       return postList1;
@@ -110,13 +103,11 @@ class _ListDataState extends State<ListData> {
       children: [
         TextButton(
           onPressed: () {
-            setState(() {
-              refresh();
-            });
+            refresh();
           },
           child: const Text("Submit"),
         ),
-        if (postList.isEmpty)
+        if (postList.length !=0)
           ListView.builder(
             shrinkWrap: true,
             itemCount: postList.length,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:student/firebase_data/auth_service.dart';
 import 'firebase_data/firebase_options.dart';
-
+String url="http://117.198.136.16";
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

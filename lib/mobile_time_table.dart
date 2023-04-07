@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'Model.dart';
 import 'package:http/http.dart' as http;
 
+import 'main.dart';
+
 var batchOptions = ["1", "2", "3"];
 var divisionOptions = [
   "A",
@@ -66,29 +68,11 @@ class ListData extends StatefulWidget {
 
 class _ListDataState extends State<ListData> {
   List<Model> postList = [];
-  String url = "http://campusflow.pcethosting.com/fetch_input.php";
-
   Future<List<Model>> getPostApi() async {
-    final response = await http.post(Uri.parse(url), body: {
-      "Day": "Monday",
-      "Division": "A",
-      "Batch": "1",
-    });
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      for (Map i in data) {
-        postList.add(Model.fromJson(i));
-      }
-      return postList;
-    } else {
-      return postList;
-    }
-  }
-  Future refresh() async{
-    final response = await http.post(Uri.parse(url), body: {
-      "Day": "Tuesday ",
-      "Division": "A",
-      "Batch": "1",
+    final response = await http.post(Uri.parse("$url/fetch_input.php"), body: {
+      "Day":"Monday",
+      "Division":"E",
+      "Batch":"1",
     });
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
@@ -107,9 +91,7 @@ class _ListDataState extends State<ListData> {
       children: <Widget>[
         TextButton(
             onPressed: () {
-              setState(() {
-                refresh();
-              });
+              null;
             },
             child: const Text("Submit")),
         FutureBuilder(
@@ -118,6 +100,7 @@ class _ListDataState extends State<ListData> {
             if (snapshot.hasData) {
               return ListView.builder(
                 shrinkWrap: true,
+
                 itemCount: postList.length,
                 itemBuilder: (context, index) {
                   return Card(

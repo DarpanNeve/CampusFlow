@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:student/mobile_time_table.dart';
 import 'firebase_data/auth_service.dart';
 import 'mobile_notice.dart';
+import 'mobile_time_table_1.dart';
 
 class OptionMenuPage extends StatelessWidget {
   final String studentName = "";
@@ -18,7 +18,7 @@ class OptionMenuPage extends StatelessWidget {
       [
         "Time Table",
         Icons.schedule,
-        const MobileTimeTable(),
+        const MobileTimeTable1(),
       ],
       [
         "Notices",
