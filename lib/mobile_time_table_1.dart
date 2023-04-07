@@ -86,11 +86,9 @@ class _ListDataState extends State<ListData> {
       for (Map i in data) {
         postList1.add(Model.fromJson(i));
       }
-      print(postList1.toString());
       setState(() {
         postList=postList1;
       });
-      print(postList);
       return postList1;
     } else {
       return postList1;
@@ -107,7 +105,7 @@ class _ListDataState extends State<ListData> {
           },
           child: const Text("Submit"),
         ),
-        if (postList.length !=0)
+        if (postList.isNotEmpty)
           ListView.builder(
             shrinkWrap: true,
             itemCount: postList.length,
