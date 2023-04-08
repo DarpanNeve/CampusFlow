@@ -101,7 +101,11 @@ class _ListDataState extends State<ListData> {
       children: [
         TextButton(
           onPressed: () {
-            refresh();
+            if(selectedBatch!.isEmpty || selectedDivision!.isEmpty || selectedDay!.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Hello World')));
+            } else {
+              refresh();
+            }
           },
           child: const Text("Submit"),
         ),
@@ -146,56 +150,7 @@ class _ListDataState extends State<ListData> {
             },
           )
         else
-         const Text("Loading"),
-
-        /*FutureBuilder(
-          future: getPostApi(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: postList.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: Colors.lightBlue,
-                    margin: const EdgeInsetsDirectional.all(5.00),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: const [
-                              Text("Start:"),
-                              Text("End:"),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Text(postList[index].start),
-                              Text(postList[index].end),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Text(postList[index].subject),
-                              Text(postList[index].classroom),
-                              Text(postList[index].teacher),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            } else {
-              return const Text("loading");
-            }
-          },
-        ),*/
+         const Text("loading  "),
       ],
     );
   }

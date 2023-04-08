@@ -12,6 +12,18 @@ class AuthService {
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
             String? email=snapshot.data?.email;
+            if(email!.contains("@pccoepune.org")){
+
+            }
+            else{
+              const snackBar = SnackBar(
+                content: Text('Yay! A SnackBar!'),
+              );
+
+              // Find the ScaffoldMessenger in the widget tree
+              // and use it to show a SnackBar.
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
 
             return const OptionMenuPage();
           } else {

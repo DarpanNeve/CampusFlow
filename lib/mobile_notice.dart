@@ -1,6 +1,11 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-import 'Model.dart';
+import 'package:flutter/material.dart';
+import 'package:student/roommate_activity/RoommateModel.dart';
+import 'main.dart';
+import 'package:http/http.dart'as http;
+import 'package:simple_url_preview/simple_url_preview.dart';
+
 class MobileNotice extends StatelessWidget {
   const MobileNotice({Key? key}) : super(key: key);
   @override
@@ -9,7 +14,7 @@ class MobileNotice extends StatelessWidget {
       title: "Notice",
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("data"),
+          title: const Text("Notice"),
         ),
         body: Column(
           children: const <Widget>[
@@ -31,13 +36,65 @@ class ShowNotices extends StatefulWidget {
 }
 
 class _ShowNoticesState extends State<ShowNotices> {
-  List<Model> roomateDataList=[];
+  List<RoommateModel> roommateDataList=[];
+
+  Future<List<RoommateModel>> getPostApi() async {
+    final response=await http.get(Uri.parse("$url/fetch_data_messages.php"));
+    var data = jsonDecode(response.body.toString());
+    if (response.statusCode == 200) {
+      for (Map i in data) {
+        roommateDataList.add(RoommateModel.fromJson(i));
+      }
+      print(roommateDataList);
+      return roommateDataList;
+    } else {
+      return roommateDataList;
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (BuildContext context, int index) {
-      return null;
+    return FutureBuilder(
+      future: getPostApi(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            shrinkWrap: true,
 
-
-    },);
+            itemCount: roommateDataList.length,
+            itemBuilder: (context, index) {
+              return Card(
+                color: Colors.lightBlue,
+                margin: const EdgeInsetsDirectional.all(5.00),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(roommateDataList[index].docs),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child:Column(
+                        children: [
+                          Text(roommateDataList[index].docs),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: SimpleUrlPreview(
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/706px-Google_%22G%22_Logo.svg.png",
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        } else {
+          return const Text("loading data");
+        }
+      },
+    );
   }
 }

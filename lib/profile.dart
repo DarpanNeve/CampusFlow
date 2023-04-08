@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student/roommate_activity/mobile_find_roomate.dart';
 import 'firebase_data/auth_service.dart';
 import 'mobile_notice.dart';
 import 'mobile_time_table_1.dart';
@@ -26,13 +27,15 @@ class OptionMenuPage extends StatelessWidget {
         const MobileNotice(),
       ],
       [
+        "Room-mate",
+        Icons.person_outline,
+        const MobileFIndRoommate(),
+      ],
+      [
         "Lost n found",
         Icons.search,
       ],
-      [
-        "Room-mate",
-        Icons.person_outline,
-      ],
+
       [
         "Old Books",
         Icons.menu_book_sharp,
