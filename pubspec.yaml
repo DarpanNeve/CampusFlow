@@ -55,6 +55,11 @@ dependencies:
   google_nav_bar: ^5.0.6
   http: ^0.13.5
   file_picker: ^5.2.7
+  webview_flutter_web: ^0.2.2+1
+  webview_flutter: ^4.0.7
+  dio: ^5.1.1
+  path: ^1.8.2
+  http_parser: ^4.0.0
 
 
 

@@ -55,7 +55,6 @@ class _ShowNoticesState extends State<ShowNotices> {
       for (Map i in data) {
         roommateDataList.add(RoommateModel.fromJson(i));
       }
-      print(roommateDataList);
       return roommateDataList;
     } else {
       return roommateDataList;
@@ -69,28 +68,60 @@ class _ShowNoticesState extends State<ShowNotices> {
         if (snapshot.hasData) {
           return ListView.builder(
             shrinkWrap: true,
-
             itemCount: roommateDataList.length,
             itemBuilder: (context, index) {
-              return Card(
-                color: Colors.lightBlue,
+              return Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.purple.shade100),
                 margin: const EdgeInsetsDirectional.all(5.00),
-                child: Row(
+                child: Column(
                   children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(roommateDataList[index].docs),
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.deepPurple,
+                          child: Text(roommateDataList[index].iD.toString()),
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              roommateDataList[index].name.toString(),
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Rubik'),
+                            ),
+                            Text(
+                              roommateDataList[index].timestamp.toString(),
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey.shade600,
+                                  fontFamily: 'Rubik'),
+                            ),
+                          ],
+                        ),
+                        // Text(roommateDataList[index].timestamp.toString()),
+                        GestureDetector(
+                          onTap: () {
+
+                          },
+                          child: Image(
+                              height: 70,
+                              width: 70,
+                              image: NetworkImage(
+                                  roommateDataList[index].docs.toString())),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child:Column(
-                        children: [
-                          Text(roommateDataList[index].docs),
-                        ],
-                      ),
+                    const SizedBox(
+                      height: 15,
                     ),
+                    Text(roommateDataList[index].message.toString()),
+                    // Text(
+                    //     'Switch to typing in a different language with the click of the mouse, and switch back just as easily. The Google Input Tools extension provides virtual keyboards for over 90 languages, full IMEs or direct transliteration for over 30 different scripts, and handwriting input for over 40 languages.'),
                   ],
                 ),
               );
