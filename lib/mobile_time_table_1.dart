@@ -73,13 +73,13 @@ class _ListDataState extends State<ListData> {
 
   Future<List<Model>> refresh() async {
     setState(() {
-      postList=[];
-      postList1=[];
+      postList = [];
+      postList1 = [];
     });
     final response = await http.post(Uri.parse("$url/fetch_input.php"), body: {
-      "Day":"$selectedDay",
-      "Division":"$selectedDivision",
-      "Batch":"$selectedBatch",
+      "Day": selectedDay,
+      "Division": selectedDivision,
+      "Batch": selectedBatch,
     });
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
@@ -87,7 +87,7 @@ class _ListDataState extends State<ListData> {
         postList1.add(Model.fromJson(i));
       }
       setState(() {
-        postList=postList1;
+        postList = postList1;
       });
       return postList1;
     } else {
@@ -101,8 +101,15 @@ class _ListDataState extends State<ListData> {
       children: [
         TextButton(
           onPressed: () {
-            if(selectedBatch!.isEmpty || selectedDivision!.isEmpty || selectedDay!.isEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Hello World')));
+            if (selectedBatch == null ||
+                selectedDivision == null ||
+                selectedDay == null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Please select all Data'),
+                ),
+              );
+              print("the value is null");
             } else {
               refresh();
             }
@@ -150,7 +157,7 @@ class _ListDataState extends State<ListData> {
             },
           )
         else
-         const Text("loading  "),
+          const Text("loading  "),
       ],
     );
   }
