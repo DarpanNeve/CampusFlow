@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../main.dart';
 import '../profile.dart';
+import 'package:http/http.dart'as http;
 
 class AuthService {
   handleAuthState() {
@@ -13,18 +14,11 @@ class AuthService {
           if (snapshot.hasData) {
             String? email=snapshot.data?.email;
             if(email!.contains("@pccoepune.org")){
+              final userData = http.post(Uri.parse("$url/fetch_user.php"), body: {
+                "Email":email,
+              });
 
             }
-            else{
-              const snackBar = SnackBar(
-                content: Text('Yay! A SnackBar!'),
-              );
-
-              // Find the ScaffoldMessenger in the widget tree
-              // and use it to show a SnackBar.
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            }
-
             return const OptionMenuPage();
           } else {
             return const MyApp();

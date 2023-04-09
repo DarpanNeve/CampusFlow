@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:student/roommate_activity/RoommateModel.dart';
+import 'package:student/upload_notice.dart';
 import 'main.dart';
 import 'package:http/http.dart'as http;
-import 'package:simple_url_preview/simple_url_preview.dart';
 
 class MobileNotice extends StatelessWidget {
   const MobileNotice({Key? key}) : super(key: key);
@@ -13,6 +13,16 @@ class MobileNotice extends StatelessWidget {
     return MaterialApp(
       title: "Notice",
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const UploadBookDetails()),
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
         appBar: AppBar(
           title: const Text("Notice"),
         ),
@@ -79,11 +89,6 @@ class _ShowNoticesState extends State<ShowNotices> {
                         children: [
                           Text(roommateDataList[index].docs),
                         ],
-                      ),
-                    ),
-                    Expanded(
-                      child: SimpleUrlPreview(
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/706px-Google_%22G%22_Logo.svg.png",
                       ),
                     ),
                   ],
