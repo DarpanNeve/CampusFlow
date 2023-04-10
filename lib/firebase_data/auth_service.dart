@@ -19,27 +19,43 @@ class AuthService {
         if (snapshot.hasData) {
           User? user = snapshot.data;
           String? email = user?.email;
-          print(email);
+
 
           if (email!.contains("@pccoepune.org")) {
-            getUserData(email);
-            if (_userDataList.length==1) {
-              print("verification initiated");
+            return FutureBuilder<List<UserModel>>(
+              future: getUserData(email),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasData && snapshot.data!.length == 1) {
 
-              return OptionMenuPage(name: _userDataList[0].name.toString(), pRN: _userDataList[0].prn.toString(), rollNo: _userDataList[0].rollNo.toString(), division: _userDataList[0].division.toString(), branch: _userDataList[0].branch.toString(), url: user!.photoURL.toString());
-            } else {
-              print("verification not initiated");
+                    return OptionMenuPage(
+                      name: snapshot.data![0].name.toString(),
+                      pRN: snapshot.data![0].prn.toString(),
+                      rollNo: snapshot.data![0].rollNo.toString(),
+                      division: snapshot.data![0].division.toString(),
+                      branch: snapshot.data![0].branch.toString(),
+                      url: user!.photoURL.toString(),
+                    );
+                  }
+                  else {
 
-              signOut();
-              return const MyApp();
-            }
+                    signOut();
+                    return const MyApp();
+                  }
+                }
+                else{
+
+                  return const MyApp();
+                }
+              },
+            );
           } else {
-            print("email do not contain Pccoe domain");
+
             signOut();
             return const MyApp();
           }
         } else {
-          print("snapshot doesn't have Pccoe data");
+
 
           return const MyApp();
         }
@@ -77,7 +93,7 @@ class AuthService {
   }
 
   signOut() async {
-    _userDataList=[];
+    _userDataList = [];
     await GoogleSignIn().signOut();
     await FirebaseAuth.instance.signOut();
   }
@@ -88,15 +104,13 @@ class AuthService {
     });
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
+      _userDataList.clear();
       for (Map i in data) {
         _userDataList.add(UserModel.fromJson(i));
       }
-      print(response.toString());
-      print("length after request");
-      print(_userDataList.length);
       return _userDataList;
     } else {
-      return [];
+      throw Exception("Failed to fetch user data");
     }
   }
 }
