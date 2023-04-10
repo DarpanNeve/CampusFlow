@@ -17,17 +17,16 @@ class AuthService {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
         if (snapshot.hasData) {
-          User? user = snapshot.data;;
+          User? user = snapshot.data;
           String? email = user?.email;
           print(email);
 
           if (email!.contains("@pccoepune.org")) {
-            getuserdata(email);
-
-            if (_userDataList.length == 0) {
+            getUserData(email);
+            if (_userDataList.length==1) {
               print("verification initiated");
 
-              return const OptionMenuPage();
+              return OptionMenuPage(name: _userDataList[0].name.toString(), pRN: _userDataList[0].prn.toString(), rollNo: _userDataList[0].rollNo.toString(), division: _userDataList[0].division.toString(), branch: _userDataList[0].branch.toString(), url: user!.photoURL.toString());
             } else {
               print("verification not initiated");
 
@@ -35,12 +34,12 @@ class AuthService {
               return const MyApp();
             }
           } else {
-            print("email do not contain pccoe domain");
+            print("email do not contain Pccoe domain");
             signOut();
             return const MyApp();
           }
         } else {
-          print("snapshot doesnt nhave pccoe data");
+          print("snapshot doesn't have Pccoe data");
 
           return const MyApp();
         }
@@ -57,7 +56,7 @@ class AuthService {
 
       // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      await googleUser?.authentication;
 
       // Create a new credential
       final credential = GoogleAuthProvider.credential(
@@ -83,7 +82,7 @@ class AuthService {
     await FirebaseAuth.instance.signOut();
   }
 
-  Future<List<UserModel>> getuserdata(String email) async {
+  Future<List<UserModel>> getUserData(String email) async {
     final response = await http.post(Uri.parse("$url/fetch_user.php"), body: {
       "Email": email,
     });
@@ -93,11 +92,11 @@ class AuthService {
         _userDataList.add(UserModel.fromJson(i));
       }
       print(response.toString());
-      print("length after reequest");
+      print("length after request");
       print(_userDataList.length);
       return _userDataList;
     } else {
-      return _userDataList;
+      return [];
     }
   }
 }

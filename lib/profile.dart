@@ -1,17 +1,23 @@
+
 import 'package:flutter/material.dart';
-import 'package:student/roommate_activity/mobile_find_roomate.dart';
+import 'package:student/roommate_activity/mobile_find_roommate.dart';
 import 'Drawer.dart';
 import 'firebase_data/auth_service.dart';
 import 'mobile_notice.dart';
 import 'mobile_time_table_1.dart';
 
 class OptionMenuPage extends StatelessWidget {
-  final String studentName = "";
+  final String name;
+  final String pRN;
+  final String rollNo;
+  final String division;
+  final String branch;
+  final String url;
 
-  final String studentDept = "ENTc";
-  final String studentRollNo = "SYETB127";
-  final int studentYear = 2023;
-  const OptionMenuPage({super.key});
+  const OptionMenuPage({super.key, required this.name, required this.pRN, required this.rollNo, required this.division, required this.branch, required this.url});
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,10 +109,10 @@ class OptionMenuPage extends StatelessWidget {
                           //   Icons.verified_user,
                           //   size: 80,
                           // ),
-                          const CircleAvatar(
+                          CircleAvatar(
                             radius: 40,
                             backgroundImage:
-                                AssetImage("assets/images/google_logo.png"),
+                                NetworkImage(url),
                             backgroundColor: Colors.transparent,
                           ),
                           const SizedBox(
@@ -116,13 +122,13 @@ class OptionMenuPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                studentName,
+                                name,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                               const Text("Second Year"),
-                              Text(studentDept),
-                              Text(studentRollNo),
+                              Text(pRN),
+                              Text(rollNo),
                             ],
                           )
                         ],
