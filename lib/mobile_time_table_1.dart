@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:student/Drawer.dart';
 import 'Model.dart';
 import 'package:http/http.dart' as http;
 import 'main.dart';
@@ -38,6 +39,7 @@ class MobileTimeTable1 extends StatelessWidget {
     return MaterialApp(
       title: "Time Table",
       home: Scaffold(
+        drawer: const SideDrawer(),
         appBar: AppBar(
           leading: const Icon(Icons.arrow_back, color: Colors.black),
           title: const Text(

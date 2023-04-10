@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
                     const AnotherPage(),
                     GestureDetector(
                       onLongPress: () {
-                        const MyApp();
+                        AuthService().signOut();
                       },
                       child: Image.asset(
                         'assets/images/google_logo.png',

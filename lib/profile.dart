@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student/roommate_activity/mobile_find_roomate.dart';
+import 'Drawer.dart';
 import 'firebase_data/auth_service.dart';
 import 'mobile_notice.dart';
 import 'mobile_time_table_1.dart';
@@ -10,7 +11,6 @@ class OptionMenuPage extends StatelessWidget {
   final String studentDept = "ENTc";
   final String studentRollNo = "SYETB127";
   final int studentYear = 2023;
-
   const OptionMenuPage({super.key});
 
   @override
@@ -29,7 +29,7 @@ class OptionMenuPage extends StatelessWidget {
       [
         "Room-mate",
         Icons.person_outline,
-        const MobileFIndRoommate(),
+        const MobileFindRoommate(),
       ],
       [
         "Lost n found",
@@ -50,6 +50,7 @@ class OptionMenuPage extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         extendBodyBehindAppBar: true,
+        drawer: const SideDrawer(),
         appBar: AppBar(
           leading: const Icon(
             Icons.menu,
