@@ -1,4 +1,4 @@
-package com.Pccoe.student;
+package com.Pccoe.Student;
 
 import io.flutter.embedding.android.FlutterActivity;
 

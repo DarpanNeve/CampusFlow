@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
                     const AnotherPage(),
                     GestureDetector(
                       onLongPress: () {
-                        AuthService().signOut();
+                        AuthService().signInWithGoogle();
                       },
                       child: Image.asset(
                         'assets/images/google_logo.png',
@@ -83,28 +83,6 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
-
-  @override
-  State<SignIn> createState() => _SignInState();
-}
-
-class _SignInState extends State<SignIn> {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        AuthService().signInWithGoogle();
-      },
-      child: const ElevatedButton(
-        onPressed: null,
-        child: Text("Login"),
       ),
     );
   }
