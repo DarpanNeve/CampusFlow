@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:student/roommate_activity/RoommateModel.dart';
-import 'package:student/upload_notice.dart';
-import 'main.dart';
-import 'package:http/http.dart'as http;
+import 'package:student/roommate/RoommateModel.dart';
+import 'package:student/Notice/upload_notice.dart';
+import '/main.dart';
+import 'package:http/http.dart' as http;
 
-class MobileNotice extends StatelessWidget {
-  const MobileNotice({Key? key}) : super(key: key);
+class MobileFindRoommate extends StatelessWidget {
+  const MobileFindRoommate({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,19 +25,17 @@ class MobileNotice extends StatelessWidget {
           child: const Icon(Icons.add),
         ),
         appBar: AppBar(
-          title: const Text("Notice"),
+          title: const Text("Room Mate"),
         ),
         body: Column(
           children: const <Widget>[
-              ShowNotices(),
+            ShowNotices(),
           ],
-
         ),
       ),
     );
   }
 }
-
 
 class ShowNotices extends StatefulWidget {
   const ShowNotices({Key? key}) : super(key: key);
@@ -46,10 +45,10 @@ class ShowNotices extends StatefulWidget {
 }
 
 class _ShowNoticesState extends State<ShowNotices> {
-  List<RoommateModel> roommateDataList=[];
+  List<RoommateModel> roommateDataList = [];
 
   Future<List<RoommateModel>> getPostApi() async {
-    final response=await http.get(Uri.parse("$url/fetch_data_messages.php"));
+    final response = await http.get(Uri.parse("$url/fetch_data_messages.php"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
@@ -60,6 +59,7 @@ class _ShowNoticesState extends State<ShowNotices> {
       return roommateDataList;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -105,9 +105,7 @@ class _ShowNoticesState extends State<ShowNotices> {
                         ),
                         // Text(roommateDataList[index].timestamp.toString()),
                         GestureDetector(
-                          onTap: () {
-
-                          },
+                          onTap: () {},
                           child: Image(
                               height: 70,
                               width: 70,

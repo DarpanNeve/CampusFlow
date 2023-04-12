@@ -1,19 +1,20 @@
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:student/roommate_activity/RoommateModel.dart';
-import 'package:student/upload_notice.dart';
-import '/main.dart';
+import 'package:student/Notice/NoticeModel.dart';
+import 'package:student/Notice/upload_notice.dart';
+import 'package:student/Widget/Drawer.dart';
+import '../main.dart';
 import 'package:http/http.dart'as http;
 
-class MobileFindRoommate extends StatelessWidget {
-  const MobileFindRoommate({Key? key}) : super(key: key);
+class MobileNotice extends StatelessWidget {
+  const MobileNotice({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Notice",
       home: Scaffold(
+        drawer: const SideDrawer(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(
@@ -29,7 +30,7 @@ class MobileFindRoommate extends StatelessWidget {
         ),
         body: Column(
           children: const <Widget>[
-            ShowNotices(),
+              ShowNotices(),
           ],
 
         ),
@@ -47,14 +48,14 @@ class ShowNotices extends StatefulWidget {
 }
 
 class _ShowNoticesState extends State<ShowNotices> {
-  List<RoommateModel> roommateDataList=[];
+  List<NoticeModel> roommateDataList=[];
 
-  Future<List<RoommateModel>> getPostApi() async {
+  Future<List<NoticeModel>> getPostApi() async {
     final response=await http.get(Uri.parse("$url/fetch_data_messages.php"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
-        roommateDataList.add(RoommateModel.fromJson(i));
+        roommateDataList.add(NoticeModel.fromJson(i));
       }
       return roommateDataList;
     } else {

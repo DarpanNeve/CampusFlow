@@ -92,50 +92,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:140073654540:android:4046ad5fb20dde9e219129",
-        "android_client_info": {
-          "package_name": "com.Pccoe.student"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "140073654540-50ee0i0f9mrci93k6400img7gd91ce3r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Pccoe.student",
-            "certificate_hash": "c7f2331e754d3e3798465e4208fa254e0cac68a4"
-          }
-        },
-        {
-          "client_id": "140073654540-lvff8thgu18ivu3j1uconpfrnr6v6e8n.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBGWOaXHfrwHwSb4df2mUCWYMhkDM4rFyY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "140073654540-kh9cr1d5kfqvn6tj3v5gad51eo5sq0kf.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "140073654540-uabnstr5dj3gf6gfap8dot7klfvrf9ai.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.Pccoe.student"
-              }
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"

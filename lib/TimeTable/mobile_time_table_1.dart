@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:student/Drawer.dart';
+import 'package:student/Widget/Drawer.dart';
 import 'Model.dart';
 import 'package:http/http.dart' as http;
-import 'main.dart';
+import '../main.dart';
 
 var batchOptions = ["1", "2", "3"];
 var divisionOptions = [
@@ -41,12 +41,11 @@ class MobileTimeTable1 extends StatelessWidget {
       home: Scaffold(
         drawer: const SideDrawer(),
         appBar: AppBar(
-          leading: const Icon(Icons.arrow_back, color: Colors.black),
           title: const Text(
             "Time Table",
             style: TextStyle(color: Colors.black),
           ),
-          backgroundColor: Colors.white,
+
         ),
         body: SingleChildScrollView(
           child: Column(

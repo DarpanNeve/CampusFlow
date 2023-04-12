@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:student/roommate_activity/mobile_find_roommate.dart';
-import 'Drawer.dart';
+import 'package:student/roommate/mobile_find_roommate.dart';
+import 'Widget/Drawer.dart';
 import 'firebase_data/auth_service.dart';
-import 'mobile_notice.dart';
-import 'mobile_time_table_1.dart';
+import 'Notice/mobile_notice.dart';
+import 'TimeTable/mobile_time_table_1.dart';
 
 class OptionMenuPage extends StatelessWidget {
   final String name;
@@ -14,10 +13,14 @@ class OptionMenuPage extends StatelessWidget {
   final String branch;
   final String url;
 
-  const OptionMenuPage({super.key, required this.name, required this.pRN, required this.rollNo, required this.division, required this.branch, required this.url});
-
-
-
+  const OptionMenuPage(
+      {super.key,
+      required this.name,
+      required this.pRN,
+      required this.rollNo,
+      required this.division,
+      required this.branch,
+      required this.url});
 
   @override
   Widget build(BuildContext context) {
@@ -32,25 +35,23 @@ class OptionMenuPage extends StatelessWidget {
         Icons.newspaper,
         const MobileNotice(),
       ],
-      [
-        "Room-mate",
-        Icons.person_outline,
-        const MobileFindRoommate(),
-      ],
-      [
-        "Lost n found",
-        Icons.search,
-      ],
-
-      [
-        "Old Books",
-        Icons.menu_book_sharp,
-      ],
-      [
-        "Calender",
-        Icons.calendar_month_outlined,
-      ],
-
+      // [
+      //   "Room-mate",
+      //   Icons.person_outline,
+      //   const MobileFindRoommate(),
+      // ],
+      // [
+      //   "Lost n found",
+      //   Icons.search,
+      // ],
+      // [
+      //   "Old Books",
+      //   Icons.menu_book_sharp,
+      // ],
+      // [
+      //   "Calender",
+      //   Icons.calendar_month_outlined,
+      // ],
     ];
 
     return MaterialApp(
@@ -58,10 +59,6 @@ class OptionMenuPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         drawer: const SideDrawer(),
         appBar: AppBar(
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
           elevation: 0,
           centerTitle: true,
           title: const Text("Dashboard", style: TextStyle(color: Colors.black)),
@@ -111,8 +108,7 @@ class OptionMenuPage extends StatelessWidget {
                           // ),
                           CircleAvatar(
                             radius: 40,
-                            backgroundImage:
-                                NetworkImage(url),
+                            backgroundImage: NetworkImage(url),
                             backgroundColor: Colors.transparent,
                           ),
                           const SizedBox(
@@ -194,3 +190,4 @@ class OptionMenuPage extends StatelessWidget {
     );
   }
 }
+

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:student/firebase_data/auth_service.dart';
+
 class SideDrawer extends StatelessWidget {
   const SideDrawer({Key? key}) : super(key: key);
 
@@ -33,7 +35,8 @@ class SideDrawer extends StatelessWidget {
             leading: const Icon(Icons.logout),
             title: const Text('Log Out'),
             onTap: () {
-              // code
+              AuthService().signOut();
+
             },
           ),
         ],

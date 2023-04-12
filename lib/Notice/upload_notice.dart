@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'borderTextField.dart';
+import '../Widget/borderTextField.dart';
 
 class UploadBookDetails extends StatefulWidget {
   const UploadBookDetails({super.key});
@@ -14,6 +14,7 @@ class UploadBookDetails extends StatefulWidget {
 
 class _UploadBookDetailsState extends State<UploadBookDetails> {
   final subjectController = TextEditingController();
+  final titleController = TextEditingController();
   File? pickedFile;
   FilePickerResult? filePickerResult;
   double _progress = 0;
@@ -93,7 +94,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: const Text(
-            "Old Books",
+            "Upload Notice",
             style: TextStyle(
               color: Colors.black,
             ),
@@ -124,7 +125,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "Sell Your Old Book",
+                        "Upload Notice",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 28,
@@ -161,7 +162,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
                     maxContentLines: 1,
                     hintText: "Title of Notice",
                     labelText: "Title",
-                    fieldController: subjectController),
+                    fieldController: titleController),
                 BorderedTextField(
                     maxContentLines: 15,
                     hintText: "Details",
