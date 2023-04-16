@@ -83,10 +83,6 @@ class _ShowNoticesState extends State<ShowNotices> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.deepPurple,
-                          child: Text(roommateDataList[index].iD.toString()),
-                        ),
                         Column(
                           children: [
                             Text(

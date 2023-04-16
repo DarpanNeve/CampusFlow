@@ -71,7 +71,7 @@ class ListData extends StatefulWidget {
 class _ListDataState extends State<ListData> {
   List<Model> postList = [];
   List<Model> postList1 = [];
-
+bool request=false;
   Future<List<Model>> refresh() async {
     setState(() {
       postList = [];
@@ -81,6 +81,9 @@ class _ListDataState extends State<ListData> {
       "Day": selectedDay,
       "Division": selectedDivision,
       "Batch": selectedBatch,
+    });
+    setState(() {
+      request=true;
     });
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
@@ -117,48 +120,49 @@ class _ListDataState extends State<ListData> {
           },
           child: const Text("Submit"),
         ),
-        if (postList.isNotEmpty)
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: postList.length,
-            itemBuilder: (content, index) {
-              return Card(
-                color: Colors.lightBlue,
-                margin: const EdgeInsetsDirectional.all(5.00),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: const [
-                          Text("Start:"),
-                          Text("End:"),
-                        ],
+        if(request==true)
+          if (postList.isNotEmpty)
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: postList.length,
+              itemBuilder: (content, index) {
+                return Card(
+                  color: Colors.lightBlue,
+                  margin: const EdgeInsetsDirectional.all(5.00),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: const [
+                            Text("Start:"),
+                            Text("End:"),
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(postList[index].start),
-                          Text(postList[index].end),
-                        ],
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(postList[index].start),
+                            Text(postList[index].end),
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(postList[index].subject),
-                          Text(postList[index].classroom),
-                          Text(postList[index].teacher),
-                        ],
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(postList[index].subject),
+                            Text(postList[index].classroom),
+                            Text(postList[index].teacher),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          )
-        else
-          const Text("loading  "),
+                    ],
+                  ),
+                );
+              },
+            )
+          else
+            const LinearProgressIndicator(),
       ],
     );
   }
