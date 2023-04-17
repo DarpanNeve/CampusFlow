@@ -5,10 +5,11 @@ import 'package:student/Notice/NoticeModel.dart';
 import 'package:student/Notice/upload_notice.dart';
 import 'package:student/Widget/Drawer.dart';
 import '../main.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 
 class MobileNotice extends StatelessWidget {
   const MobileNotice({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,15 +31,13 @@ class MobileNotice extends StatelessWidget {
         ),
         body: Column(
           children: const <Widget>[
-              ShowNotices(),
+            ShowNotices(),
           ],
-
         ),
       ),
     );
   }
 }
-
 
 class ShowNotices extends StatefulWidget {
   const ShowNotices({Key? key}) : super(key: key);
@@ -48,10 +47,10 @@ class ShowNotices extends StatefulWidget {
 }
 
 class _ShowNoticesState extends State<ShowNotices> {
-  List<NoticeModel> roommateDataList=[];
+  List<NoticeModel> roommateDataList = [];
 
   Future<List<NoticeModel>> getPostApi() async {
-    final response=await http.get(Uri.parse("$url/fetch_data_messages.php"));
+    final response = await http.get(Uri.parse("$url/fetch_data_messages.php"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
@@ -62,6 +61,7 @@ class _ShowNoticesState extends State<ShowNotices> {
       return roommateDataList;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -103,9 +103,7 @@ class _ShowNoticesState extends State<ShowNotices> {
                         ),
                         // Text(roommateDataList[index].timestamp.toString()),
                         GestureDetector(
-                          onTap: () {
-
-                          },
+                          onTap: () {},
                           child: Image(
                               height: 70,
                               width: 70,
@@ -126,7 +124,9 @@ class _ShowNoticesState extends State<ShowNotices> {
             },
           );
         } else {
-          return const CircularProgressIndicator();
+          return Column(crossAxisAlignment:CrossAxisAlignment.center,
+              mainAxisAlignment:MainAxisAlignment.center,
+              children: const [CircularProgressIndicator()]);
         }
       },
     );

@@ -10,7 +10,7 @@ import '../profile.dart';
 import 'package:http/http.dart' as http;
 
 List<UserModel> _userDataList = [];
-late String userName,userPhoto;
+ late String userName,userPhoto;
 
 class AuthService {
   handleAuthState() {
@@ -20,8 +20,6 @@ class AuthService {
         if (snapshot.hasData) {
           User? user = snapshot.data;
           String? email = user?.email;
-
-
           if (email!.contains("@pccoepune.org")) {
             return FutureBuilder<List<UserModel>>(
               future: getUserData(email),

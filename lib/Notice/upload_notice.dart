@@ -4,7 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import '../Widget/borderTextField.dart';
+import 'package:student/firebase_data/auth_service.dart';
 import 'dart:math';
+import 'package:http/http.dart' as http;
+import 'package:student/main.dart';
 
 class UploadBookDetails extends StatefulWidget {
   const UploadBookDetails({super.key});
@@ -15,7 +18,7 @@ class UploadBookDetails extends StatefulWidget {
 
 class _UploadBookDetailsState extends State<UploadBookDetails> {
   late String filename;
-  late int filecode;
+  late int fileCode;
   final subjectController = TextEditingController();
   final titleController = TextEditingController();
   File? pickedFile;
@@ -29,12 +32,18 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
     }
     //initialising dio
     Dio dio = Dio();
-    filecode=Random().nextInt(999999);
-    filename="$filecode${filePickerResult!.files.single.name}";
-    FormData formData = FormData.fromMap({
-      'file': await MultipartFile.fromFile(pickedFile!.path,
-          filename: filename),
-    });
+    setState(
+      () {
+        fileCode = Random().nextInt(999999);
+        filename = "$fileCode${filePickerResult!.files.single.name}";
+      },
+    );
+    FormData formData = FormData.fromMap(
+      {
+        'file':
+            await MultipartFile.fromFile(pickedFile!.path, filename: filename),
+      },
+    );
 
     // Send the request
     try {
@@ -43,9 +52,11 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
         'http://117.198.136.16/upload.php',
         data: formData,
         onSendProgress: (int sent, int total) {
-          setState(() {
-            _progress = (sent / total);
-          });
+          setState(
+            () {
+              _progress = (sent / total);
+            },
+          );
           print('Upload progress: $_progress');
         },
       );
@@ -55,7 +66,8 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
         var responseJson = json.encode(response.data);
         var responseData = json.decode(responseJson);
         if (responseData['status'] == 'success') {
-          SendInfoToMySql();
+          sendInfoToMySql(userName , titleController.value.toString(),
+              subjectController.value.toString(), filename);
           print('File uploaded successfully!');
         } else {
           print('File upload failed: ${responseData['message']}');
@@ -186,7 +198,29 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
     );
   }
 
-  void SendInfoToMySql() {
+  void sendInfoToMySql(
+      String name, String title, String message, String docs) async {
+    try {
 
+      //var response = await request.send();
+      final uploadResponse = await http.post(
+        Uri.parse("$url/upload_data_messages.php"),
+        body: {
+          "Name": name,
+          "Title": title,
+          "Message": message,
+          "Docs": "http://117.198.136.16/files/$docs",
+        },
+      );
+      // Check the response
+      if (uploadResponse.statusCode == 200) {
+        print(uploadResponse.body.toString());
+        print('message uploaded successfully!');
+      } else {
+        print('message upload failed with status code ${uploadResponse.statusCode}');
+      }
+    } catch (e) {
+      print('message upload failed: $e');
+    }
   }
 }

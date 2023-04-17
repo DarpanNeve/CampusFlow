@@ -82,48 +82,50 @@ class OptionMenuPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                color: Colors.lightBlue.shade300,
                 height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 1),
                   borderRadius: BorderRadius.circular(22),
+                  color: Colors.lightBlue.shade200,
                 ),
-                child: Column(children: [
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Icon(
-                      //   Icons.verified_user,
-                      //   size: 80,
-                      // ),
-                      CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(url),
-                        backgroundColor: Colors.transparent,
-                      ),
                       const SizedBox(
-                        width: 20,
+                        height: 30,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            name,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                          // Icon(
+                          //   Icons.verified_user,
+                          //   size: 80,
+                          // ),
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage(url),
+                            backgroundColor: Colors.transparent,
                           ),
-                          const Text("Second Year"),
-                          Text(pRN),
-                          Text(rollNo),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              Text(pRN),
+                              Text(rollNo),
+                            ],
+                          )
                         ],
                       )
-                    ],
-                  )
-                ]),
+                    ]),
               ),
               const SizedBox(
                 height: 5,

@@ -45,7 +45,6 @@ class MobileTimeTable1 extends StatelessWidget {
             "Time Table",
             style: TextStyle(color: Colors.black),
           ),
-
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -71,28 +70,36 @@ class ListData extends StatefulWidget {
 class _ListDataState extends State<ListData> {
   List<Model> postList = [];
   List<Model> postList1 = [];
-bool request=false;
+  bool request = false;
+
   Future<List<Model>> refresh() async {
+    setState(
+      () {
+        postList = [];
+        postList1 = [];
+      },
+    );
+    final response = await http.post(
+      Uri.parse("$url/fetch_input.php"),
+      body: {
+        "Day": selectedDay,
+        "Division": selectedDivision,
+        "Batch": selectedBatch,
+      },
+    );
     setState(() {
-      postList = [];
-      postList1 = [];
-    });
-    final response = await http.post(Uri.parse("$url/fetch_input.php"), body: {
-      "Day": selectedDay,
-      "Division": selectedDivision,
-      "Batch": selectedBatch,
-    });
-    setState(() {
-      request=true;
+      request = true;
     });
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
         postList1.add(Model.fromJson(i));
       }
-      setState(() {
-        postList = postList1;
-      });
+      setState(
+        () {
+          postList = postList1;
+        },
+      );
       return postList1;
     } else {
       return postList1;
@@ -104,7 +111,6 @@ bool request=false;
     return Column(
       children: [
         ElevatedButton(
-
           onPressed: () {
             if (selectedBatch == null ||
                 selectedDivision == null ||
@@ -121,7 +127,7 @@ bool request=false;
           },
           child: const Text("Submit"),
         ),
-        if(request==true)
+        if (request == true)
           if (postList.isNotEmpty)
             ListView.builder(
               shrinkWrap: true,
