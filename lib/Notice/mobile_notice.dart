@@ -105,16 +105,19 @@ class _ShowNoticesState extends State<ShowNotices> {
                         GestureDetector(
                           onTap: () {},
                           child: Image(
-                              height: 70,
-                              width: 70,
-                              image: NetworkImage(
-                                  roommateDataList[index].docs.toString())),
+                            height: 70,
+                            width: 70,
+                            image: NetworkImage(
+                              "$url/files/${roommateDataList[index].docs.toString()}",
+                            ),
+                          ),
                         ),
                       ],
                     ),
                     const SizedBox(
                       height: 15,
                     ),
+                    Text(roommateDataList[index].title.toString()),
                     Text(roommateDataList[index].message.toString()),
                     // Text(
                     //     'Switch to typing in a different language with the click of the mouse, and switch back just as easily. The Google Input Tools extension provides virtual keyboards for over 90 languages, full IMEs or direct transliteration for over 30 different scripts, and handwriting input for over 40 languages.'),
@@ -124,8 +127,9 @@ class _ShowNoticesState extends State<ShowNotices> {
             },
           );
         } else {
-          return Column(crossAxisAlignment:CrossAxisAlignment.center,
-              mainAxisAlignment:MainAxisAlignment.center,
+          return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [CircularProgressIndicator()]);
         }
       },

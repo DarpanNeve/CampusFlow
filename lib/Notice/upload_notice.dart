@@ -209,7 +209,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
           "Name": name,
           "Title": title,
           "Message": message,
-          "Docs": "http://117.198.136.16/files/$docs",
+          "Docs": docs,
         },
       );
       // Check the response
