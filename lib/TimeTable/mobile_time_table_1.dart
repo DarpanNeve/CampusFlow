@@ -134,17 +134,9 @@ bool request=false;
                     children: [
                       Expanded(
                         child: Column(
-                          children: const [
-                            Text("Start:"),
-                            Text("End:"),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
                           children: [
-                            Text(postList[index].start),
-                            Text(postList[index].end),
+                            Text("Start:${postList[index].start}"),
+                            Text("End:${postList[index].end}"),
                           ],
                         ),
                       ),

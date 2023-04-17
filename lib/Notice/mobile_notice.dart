@@ -126,7 +126,7 @@ class _ShowNoticesState extends State<ShowNotices> {
             },
           );
         } else {
-          return const Text("loading data");
+          return const CircularProgressIndicator();
         }
       },
     );
