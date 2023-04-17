@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import '../Widget/borderTextField.dart';
+import 'dart:math';
 
 class UploadBookDetails extends StatefulWidget {
   const UploadBookDetails({super.key});
@@ -13,6 +14,8 @@ class UploadBookDetails extends StatefulWidget {
 }
 
 class _UploadBookDetailsState extends State<UploadBookDetails> {
+  late String filename;
+  late int filecode;
   final subjectController = TextEditingController();
   final titleController = TextEditingController();
   File? pickedFile;
@@ -26,9 +29,11 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
     }
     //initialising dio
     Dio dio = Dio();
+    filecode=Random().nextInt(999999);
+    filename="$filecode${filePickerResult!.files.single.name}";
     FormData formData = FormData.fromMap({
       'file': await MultipartFile.fromFile(pickedFile!.path,
-          filename: filePickerResult!.files.single.name),
+          filename: filename),
     });
 
     // Send the request
@@ -47,10 +52,10 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
 
       // Check the response
       if (response.statusCode == 200) {
-        var responseJson = await response.data;
+        var responseJson = json.encode(response.data);
         var responseData = json.decode(responseJson);
         if (responseData['status'] == 'success') {
-
+          SendInfoToMySql();
           print('File uploaded successfully!');
         } else {
           print('File upload failed: ${responseData['message']}');
@@ -179,5 +184,9 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
         ),
       ),
     );
+  }
+
+  void SendInfoToMySql() {
+
   }
 }

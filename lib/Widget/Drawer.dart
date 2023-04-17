@@ -9,12 +9,12 @@ class SideDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text("Hello"),
+           UserAccountsDrawerHeader(
+            accountName: Text(userName),
             accountEmail: null,
             currentAccountPicture:  CircleAvatar(
-              backgroundImage: AssetImage(
-                  'assets/images/college_logo.png'), // replace with your image URL
+              backgroundImage: NetworkImage(
+                  userPhoto), // replace with your image URL
             ),
           ),
           ListTile(

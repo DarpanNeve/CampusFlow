@@ -10,6 +10,7 @@ import '../profile.dart';
 import 'package:http/http.dart' as http;
 
 List<UserModel> _userDataList = [];
+late String userName,userPhoto;
 
 class AuthService {
   handleAuthState() {
@@ -27,6 +28,8 @@ class AuthService {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData && snapshot.data!.length == 1) {
+                    userName=snapshot.data![0].name.toString();
+                    userPhoto=user!.photoURL.toString();
 
                     return OptionMenuPage(
                       name: snapshot.data![0].name.toString(),
@@ -34,7 +37,7 @@ class AuthService {
                       rollNo: snapshot.data![0].rollNo.toString(),
                       division: snapshot.data![0].division.toString(),
                       branch: snapshot.data![0].branch.toString(),
-                      url: user!.photoURL.toString(),
+                      url: user.photoURL.toString(),
                     );
                   }
                   else {
