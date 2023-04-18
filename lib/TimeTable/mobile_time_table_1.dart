@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:student/Widget/Drawer.dart';
-import 'Model.dart';
 import 'package:http/http.dart' as http;
+import 'package:student/Widget/Drawer.dart';
+
 import '../main.dart';
+import 'Model.dart';
 
 var batchOptions = ["1", "2", "3"];
 var divisionOptions = [
@@ -120,7 +121,6 @@ class _ListDataState extends State<ListData> {
                   content: Text('Please select all Data'),
                 ),
               );
-              print("the value is null");
             } else {
               refresh();
             }
@@ -161,7 +161,7 @@ class _ListDataState extends State<ListData> {
               },
             )
           else
-            const CircularProgressIndicator(),
+            const Center(child: CircularProgressIndicator()),
       ],
     );
   }

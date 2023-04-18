@@ -1,11 +1,15 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:open_filex/open_filex.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:student/Notice/NoticeModel.dart';
 import 'package:student/Notice/upload_notice.dart';
 import 'package:student/Widget/Drawer.dart';
+
 import '../main.dart';
-import 'package:http/http.dart' as http;
 
 class MobileNotice extends StatelessWidget {
   const MobileNotice({Key? key}) : super(key: key);
@@ -101,17 +105,10 @@ class _ShowNoticesState extends State<ShowNotices> {
                             ),
                           ],
                         ),
-                        // Text(roommateDataList[index].timestamp.toString()),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Image(
-                            height: 70,
-                            width: 70,
-                            image: NetworkImage(
-                              "$url/files/${roommateDataList[index].docs.toString()}",
-                            ),
-                          ),
-                        ),
+                        if (roommateDataList[index].docs.toString().isNotEmpty)
+                          ShowNoticePreview(
+                              documentUrl:
+                                  roommateDataList[index].docs.toString()),
                       ],
                     ),
                     const SizedBox(
@@ -127,12 +124,58 @@ class _ShowNoticesState extends State<ShowNotices> {
             },
           );
         } else {
-          return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [CircularProgressIndicator()]);
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );
+  }
+}
+
+class ShowNoticePreview extends StatelessWidget {
+  const ShowNoticePreview({Key? key, required this.documentUrl})
+      : super(key: key);
+  final String documentUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () async {
+          Map<Permission, PermissionStatus> statuses = await [
+            Permission.storage,
+            //add more permission to request here.
+          ].request();
+
+          if (statuses[Permission.storage]!.isGranted) {
+            // var dir = await DownloadsPathProvider
+            //     .downloadsDirectory;
+            // if (dir != null) {
+            print("permission granted");
+            String savename = "new";
+            String savePath = "/storage/emulated/0//Download/$savename";
+            // print(savePath);
+            //output:  /storage/emulated/0/Download/banner.png
+
+            try {
+              await Dio().download(documentUrl, savePath,
+                  onReceiveProgress: (received, total) {
+                if (total != -1) {
+                  print("${(received / total * 100).toStringAsFixed(0)}%");
+                  //you can build progressbar feature too
+                }
+              });
+              print("File is saved to download folder.");
+              OpenFilex.open(savePath);
+            } on DioError catch (e) {
+              print('${e.message} ok');
+            }
+            // }
+          } else {
+            print("No permission to read and write.");
+          }
+        },
+        child: Image.network(
+            width: 80, height: 80, "http://117.198.136.16/files/$documentUrl"));
   }
 }

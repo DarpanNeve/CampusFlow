@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
-import '../Widget/borderTextField.dart';
-import 'package:student/firebase_data/auth_service.dart';
 import 'dart:math';
+
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:student/firebase_data/auth_service.dart';
 import 'package:student/main.dart';
+
+import '../Widget/borderTextField.dart';
 
 class UploadBookDetails extends StatefulWidget {
   const UploadBookDetails({super.key});
@@ -17,7 +19,7 @@ class UploadBookDetails extends StatefulWidget {
 }
 
 class _UploadBookDetailsState extends State<UploadBookDetails> {
-  late String filename;
+  String filename = "";
   late int fileCode;
   final subjectController = TextEditingController();
   final titleController = TextEditingController();
@@ -28,6 +30,8 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
   Future<void> _uploadFile() async {
     if (pickedFile == null) {
       print('Selected file is null');
+      sendInfoToMySql(
+          userName, titleController.text, subjectController.text, filename);
       return;
     }
     //initialising dio
@@ -38,6 +42,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
         filename = "$fileCode${filePickerResult!.files.single.name}";
       },
     );
+    print(filePickerResult?.paths.toString());
     FormData formData = FormData.fromMap(
       {
         'file':
