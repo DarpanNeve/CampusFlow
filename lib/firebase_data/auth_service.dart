@@ -4,13 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'UserModel.dart';
-import '../main.dart';
-import '../profile.dart';
 import 'package:http/http.dart' as http;
 
+import '../main.dart';
+import '../profile.dart';
+import 'UserModel.dart';
+
 List<UserModel> _userDataList = [];
- late String userName,userPhoto;
+late String userName, userPhoto;
 
 class AuthService {
   handleAuthState() {

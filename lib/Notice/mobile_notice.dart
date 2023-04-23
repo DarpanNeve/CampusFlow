@@ -1,15 +1,13 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:open_filex/open_filex.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:student/Notice/NoticeModel.dart';
 import 'package:student/Notice/upload_notice.dart';
 import 'package:student/Widget/Drawer.dart';
 
 import '../main.dart';
+import 'download.dart';
 
 class MobileNotice extends StatelessWidget {
   const MobileNotice({Key? key}) : super(key: key);
@@ -72,56 +70,61 @@ class _ShowNoticesState extends State<ShowNotices> {
       future: getPostApi(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: roommateDataList.length,
-            itemBuilder: (context, index) {
-              return Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.purple.shade100),
-                margin: const EdgeInsetsDirectional.all(5.00),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            Text(
-                              roommateDataList[index].name.toString(),
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Rubik'),
-                            ),
-                            Text(
-                              roommateDataList[index].timestamp.toString(),
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey.shade600,
-                                  fontFamily: 'Rubik'),
-                            ),
-                          ],
-                        ),
-                        if (roommateDataList[index].docs.toString().isNotEmpty)
-                          ShowNoticePreview(
-                              documentUrl:
-                                  roommateDataList[index].docs.toString()),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Text(roommateDataList[index].title.toString()),
-                    Text(roommateDataList[index].message.toString()),
-                    // Text(
-                    //     'Switch to typing in a different language with the click of the mouse, and switch back just as easily. The Google Input Tools extension provides virtual keyboards for over 90 languages, full IMEs or direct transliteration for over 30 different scripts, and handwriting input for over 40 languages.'),
-                  ],
-                ),
-              );
-            },
+          return Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: roommateDataList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.purple.shade100),
+                  margin: const EdgeInsetsDirectional.all(5.00),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                roommateDataList[index].name.toString(),
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Rubik'),
+                              ),
+                              Text(
+                                roommateDataList[index].timestamp.toString(),
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey.shade600,
+                                    fontFamily: 'Rubik'),
+                              ),
+                            ],
+                          ),
+                          if (roommateDataList[index]
+                              .docs
+                              .toString()
+                              .isNotEmpty)
+                            ShowNoticePreview(
+                                documentUrl:
+                                    roommateDataList[index].docs.toString()),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(roommateDataList[index].title.toString()),
+                      Text(roommateDataList[index].message.toString()),
+                      // Text(
+                      //     'Switch to typing in a different language with the click of the mouse, and switch back just as easily. The Google Input Tools extension provides virtual keyboards for over 90 languages, full IMEs or direct transliteration for over 30 different scripts, and handwriting input for over 40 languages.'),
+                    ],
+                  ),
+                );
+              },
+            ),
           );
         } else {
           return const Center(
@@ -133,49 +136,28 @@ class _ShowNoticesState extends State<ShowNotices> {
   }
 }
 
-class ShowNoticePreview extends StatelessWidget {
-  const ShowNoticePreview({Key? key, required this.documentUrl})
-      : super(key: key);
+class ShowNoticePreview extends StatefulWidget {
+  ShowNoticePreview({Key? key, required this.documentUrl}) : super(key: key);
   final String documentUrl;
 
   @override
+  State<ShowNoticePreview> createState() => _ShowNoticePreviewState();
+}
+
+class _ShowNoticePreviewState extends State<ShowNoticePreview> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () async {
-          Map<Permission, PermissionStatus> statuses = await [
-            Permission.storage,
-            //add more permission to request here.
-          ].request();
-
-          if (statuses[Permission.storage]!.isGranted) {
-            // var dir = await DownloadsPathProvider
-            //     .downloadsDirectory;
-            // if (dir != null) {
-            print("permission granted");
-            String savename = "new";
-            String savePath = "/storage/emulated/0//Download/$savename";
-            // print(savePath);
-            //output:  /storage/emulated/0/Download/banner.png
-
-            try {
-              await Dio().download(documentUrl, savePath,
-                  onReceiveProgress: (received, total) {
-                if (total != -1) {
-                  print("${(received / total * 100).toStringAsFixed(0)}%");
-                  //you can build progressbar feature too
-                }
-              });
-              print("File is saved to download folder.");
-              OpenFilex.open(savePath);
-            } on DioError catch (e) {
-              print('${e.message} ok');
-            }
-            // }
-          } else {
-            print("No permission to read and write.");
-          }
+        onTap: () {
+          // _launchUrl(Uri.parse("$url/files/${widget.documentUrl}"));
+          MyDownloader(url: "$url/files/${widget.documentUrl}").downloadFile();
         },
         child: Image.network(
-            width: 80, height: 80, "http://117.198.136.16/files/$documentUrl"));
+            width: 80, height: 80, "$url/files/${widget.documentUrl}"));
   }
 }
+// Future<void> _launchUrl(Uri url) async {
+//   if (!await launchUrl(url)) {
+//     throw Exception('Could not launch $url');
+//   }
+// }

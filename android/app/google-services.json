@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "140073654540-ici47qmavub3fl4b7bq8laeaq2k2emf2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Pccoe.Student",
+            "certificate_hash": "f6f9e0dd18ca7822ea250942b3ce9364941bc993"
+          }
+        },
+        {
+          "client_id": "140073654540-t4a34eg4cn558fimmrggt103c4lq3aks.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Pccoe.Student",
+            "certificate_hash": "056fe5861b2cd101664eda42098dac9f659d579d"
+          }
+        },
+        {
           "client_id": "140073654540-vcjto0k43n2f3nhcjr1929bpim2gvl5o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

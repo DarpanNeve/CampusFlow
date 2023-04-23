@@ -40,6 +40,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
       () {
         fileCode = Random().nextInt(999999);
         filename = "$fileCode${filePickerResult!.files.single.name}";
+        filename = filename.replaceAll(" ", "");
       },
     );
     print(filePickerResult?.paths.toString());
@@ -71,7 +72,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
         var responseJson = json.encode(response.data);
         var responseData = json.decode(responseJson);
         if (responseData['status'] == 'success') {
-          sendInfoToMySql(userName , titleController.value.toString(),
+          sendInfoToMySql(userName, titleController.text.toString(),
               subjectController.value.toString(), filename);
           print('File uploaded successfully!');
         } else {
