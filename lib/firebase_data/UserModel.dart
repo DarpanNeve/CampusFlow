@@ -1,6 +1,7 @@
 
 
 class UserModel {
+  String? id;
   String? name;
   String? email;
   String? prn;
@@ -8,9 +9,8 @@ class UserModel {
   String? division;
   String? branch;
 
-  UserModel({this.name, this.email, this.prn, this.rollNo, this.division, this.branch});
-
   UserModel.fromJson(dynamic json) {
+    id = json["ID"].toString();
     name = json["Name"];
     email = json["Email"];
     prn = json["Prn"];
@@ -20,7 +20,8 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data= <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data["ID"] = id;
     _data["Name"] = name;
     _data["Email"] = email;
     _data["Prn"] = prn;
