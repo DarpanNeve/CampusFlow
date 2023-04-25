@@ -221,7 +221,9 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
       // Check the response
       if (uploadResponse.statusCode == 200) {
         print(uploadResponse.body.toString());
+
         print('message uploaded successfully!');
+        Navigator.pop(context);
       } else {
         print('message upload failed with status code ${uploadResponse.statusCode}');
       }

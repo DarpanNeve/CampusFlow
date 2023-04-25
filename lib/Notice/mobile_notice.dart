@@ -118,8 +118,6 @@ class _ShowNoticesState extends State<ShowNotices> {
                       ),
                       Text(roommateDataList[index].title.toString()),
                       Text(roommateDataList[index].message.toString()),
-                      // Text(
-                      //     'Switch to typing in a different language with the click of the mouse, and switch back just as easily. The Google Input Tools extension provides virtual keyboards for over 90 languages, full IMEs or direct transliteration for over 30 different scripts, and handwriting input for over 40 languages.'),
                     ],
                   ),
                 );
@@ -137,7 +135,8 @@ class _ShowNoticesState extends State<ShowNotices> {
 }
 
 class ShowNoticePreview extends StatefulWidget {
-  ShowNoticePreview({Key? key, required this.documentUrl}) : super(key: key);
+  const ShowNoticePreview({Key? key, required this.documentUrl})
+      : super(key: key);
   final String documentUrl;
 
   @override
@@ -148,16 +147,30 @@ class _ShowNoticePreviewState extends State<ShowNoticePreview> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          // _launchUrl(Uri.parse("$url/files/${widget.documentUrl}"));
-          MyDownloader(url: "$url/files/${widget.documentUrl}").downloadFile();
-        },
-        child: Image.network(
-            width: 80, height: 80, "$url/files/${widget.documentUrl}"));
+      onTap: () {
+        MyDownloader(url: "$url/files/${widget.documentUrl}").downloadFile();
+      },
+      child: Column(
+        children: <Widget>[
+          if (widget.documentUrl.contains(".jpeg") ||
+              widget.documentUrl.contains(".jpg") ||
+              widget.documentUrl.contains(".png") ||
+              widget.documentUrl.contains(".gif")) ...[
+            const Icon(Icons.image_rounded),
+          ] else if (widget.documentUrl.contains(".pdf")) ...[
+            const Icon(Icons.picture_as_pdf),
+          ] else if (widget.documentUrl.contains(".txt")) ...[
+            const Icon(Icons.description),
+          ] else if (widget.documentUrl.contains(".xlsx")) ...[
+            const Icon(Icons.table_chart),
+          ] else if (widget.documentUrl.contains(".doc") ||
+              widget.documentUrl.contains(".docx")) ...[
+            const Icon(Icons.article),
+          ] else ...[
+            const Icon(Icons.error)
+          ]
+        ],
+      ),
+    );
   }
 }
-// Future<void> _launchUrl(Uri url) async {
-//   if (!await launchUrl(url)) {
-//     throw Exception('Could not launch $url');
-//   }
-// }
