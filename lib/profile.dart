@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'Widget/Drawer.dart';
-import 'firebase_data/auth_service.dart';
+
 import 'Notice/mobile_notice.dart';
 import 'TimeTable/mobile_time_table_1.dart';
+import 'Widget/Drawer.dart';
+import 'firebase_data/auth_service.dart';
 
 class OptionMenuPage extends StatelessWidget {
   final String name;
@@ -54,10 +55,16 @@ class OptionMenuPage extends StatelessWidget {
     ];
 
     return MaterialApp(
+      theme: Theme.of(context).copyWith(
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: const Color(0xFF81D4FA),
+            ),
+      ),
       home: Scaffold(
         extendBodyBehindAppBar: true,
         drawer: const SideDrawer(),
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black),
           elevation: 0,
           centerTitle: true,
           title: const Text("Dashboard", style: TextStyle(color: Colors.black)),
@@ -84,7 +91,6 @@ class OptionMenuPage extends StatelessWidget {
               Container(
                 height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 1),
                   borderRadius: BorderRadius.circular(22),
                   color: Colors.lightBlue.shade200,
                 ),
@@ -154,9 +160,19 @@ class OptionMenuPage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                            color: Colors.grey,
-                            border: Border.all(color: Colors.white, width: 1),
-                            borderRadius: BorderRadius.circular(12)),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 2.00,
+                                offset: Offset(0, 5))
+                          ],
+                          color: const Color.fromRGBO(231, 237, 230, 100),
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,

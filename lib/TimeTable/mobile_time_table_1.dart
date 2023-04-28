@@ -38,10 +38,16 @@ class MobileTimeTable1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: Theme.of(context).copyWith(
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: const Color(0xFF81D4FA),
+            ),
+      ),
       title: "Time Table",
       home: Scaffold(
         drawer: const SideDrawer(),
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black),
           title: const Text(
             "Time Table",
             style: TextStyle(color: Colors.black),
@@ -125,7 +131,7 @@ class _ListDataState extends State<ListData> {
               refresh();
             }
           },
-          child: const Text("Submit"),
+          child: const Text("Submit", style: TextStyle(color: Colors.black)),
         ),
         if (request == true)
           if (postList.isNotEmpty)

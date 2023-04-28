@@ -9,50 +9,24 @@ import 'package:student/Widget/Drawer.dart';
 import '../main.dart';
 import 'download.dart';
 
-class MobileNotice extends StatelessWidget {
+class MobileNotice extends StatefulWidget {
   const MobileNotice({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Notice",
-      home: Scaffold(
-        drawer: const SideDrawer(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const UploadBookDetails()),
-            );
-          },
-          child: const Icon(Icons.add),
-        ),
-        appBar: AppBar(
-          title: const Text("Notice"),
-        ),
-        body: Column(
-          children: const <Widget>[
-            ShowNotices(),
-          ],
-        ),
-      ),
-    );
-  }
+  State<MobileNotice> createState() => _MobileNoticeState();
 }
 
-class ShowNotices extends StatefulWidget {
-  const ShowNotices({Key? key}) : super(key: key);
-
-  @override
-  State<ShowNotices> createState() => _ShowNoticesState();
-}
-
-class _ShowNoticesState extends State<ShowNotices> {
+class _MobileNoticeState extends State<MobileNotice> {
   List<NoticeModel> roommateDataList = [];
 
-  Future<List<NoticeModel>> getPostApi() async {
-    final response = await http.get(Uri.parse("$url/fetch_data_messages.php"));
+  void _refreshNotices() async {
+    setState(() {
+      roommateDataList.clear();
+    });
+  }
+
+  Future<List<NoticeModel>> _getPostApi() async {
+    final response = await http.get(Uri.parse("$url/fetch_notice.php"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
@@ -66,70 +40,105 @@ class _ShowNoticesState extends State<ShowNotices> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getPostApi(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: roommateDataList.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.purple.shade100),
-                  margin: const EdgeInsetsDirectional.all(5.00),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
+    return MaterialApp(
+      theme: Theme.of(context).copyWith(
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: const Color(0xFF81D4FA),
+            ),
+      ),
+      title: "Notice",
+      home: Scaffold(
+        drawer: const SideDrawer(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => UploadBookDetails(
+                  onUploaded: _refreshNotices,
+                ),
+              ),
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black),
+          title: const Text("Notice", style: TextStyle(color: Colors.black)),
+        ),
+        body: Column(
+          children: <Widget>[
+            FutureBuilder(
+              future: _getPostApi(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: roommateDataList.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.lightBlue.shade200),
+                          margin: const EdgeInsetsDirectional.all(5.00),
+                          child: Column(
                             children: [
-                              Text(
-                                roommateDataList[index].name.toString(),
-                                style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Rubik'),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(
+                                        roommateDataList[index].name.toString(),
+                                        style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'Rubik'),
+                                      ),
+                                      Text(
+                                        roommateDataList[index]
+                                            .timestamp
+                                            .toString(),
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey.shade600,
+                                            fontFamily: 'Rubik'),
+                                      ),
+                                    ],
+                                  ),
+                                  if (roommateDataList[index]
+                                      .docs
+                                      .toString()
+                                      .isNotEmpty)
+                                    ShowNoticePreview(
+                                        documentUrl: roommateDataList[index]
+                                            .docs
+                                            .toString()),
+                                ],
                               ),
-                              Text(
-                                roommateDataList[index].timestamp.toString(),
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
-                                    fontFamily: 'Rubik'),
+                              const SizedBox(
+                                height: 15,
                               ),
+                              Text(roommateDataList[index].title.toString()),
+                              Text(roommateDataList[index].message.toString()),
                             ],
                           ),
-                          if (roommateDataList[index]
-                              .docs
-                              .toString()
-                              .isNotEmpty)
-                            ShowNoticePreview(
-                                documentUrl:
-                                    roommateDataList[index].docs.toString()),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(roommateDataList[index].title.toString()),
-                      Text(roommateDataList[index].message.toString()),
-                    ],
-                  ),
-                );
+                        );
+                      },
+                    ),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
               },
             ),
-          );
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
+          ],
+        ),
+      ),
     );
   }
 }

@@ -34,6 +34,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: Theme.of(context).copyWith(
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: const Color(0xFF81D4FA),
+            ),
+      ),
       title: "Hello",
       home: Scaffold(
         body: SizedBox(
@@ -114,7 +119,10 @@ class AnotherPage extends StatelessWidget {
           MaterialPageRoute(builder: (context) => const MyApp()),
         );
       },
-      child: const Text("Login"),
+      child: const Text(
+        "Login",
+        style: TextStyle(color: Colors.black),
+      ),
     );
   }
 }

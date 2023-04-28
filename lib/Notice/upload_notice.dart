@@ -12,7 +12,9 @@ import 'package:student/main.dart';
 import '../Widget/borderTextField.dart';
 
 class UploadBookDetails extends StatefulWidget {
-  const UploadBookDetails({super.key});
+  const UploadBookDetails({super.key, this.onUploaded});
+
+  final Function? onUploaded;
 
   @override
   State<UploadBookDetails> createState() => _UploadBookDetailsState();
@@ -100,6 +102,11 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: Theme.of(context).copyWith(
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: const Color(0xFF81D4FA),
+            ),
+      ),
       home: Scaffold(
         appBar: AppBar(
           leading: const Icon(
@@ -143,7 +150,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
                     )),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -207,7 +214,6 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
   void sendInfoToMySql(
       String name, String title, String message, String docs) async {
     try {
-
       //var response = await request.send();
       final uploadResponse = await http.post(
         Uri.parse("$url/upload_data_messages.php"),
@@ -221,11 +227,14 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
       // Check the response
       if (uploadResponse.statusCode == 200) {
         print(uploadResponse.body.toString());
-
         print('message uploaded successfully!');
+        if (widget.onUploaded != null) {
+          widget.onUploaded!();
+        }
         Navigator.pop(context);
       } else {
-        print('message upload failed with status code ${uploadResponse.statusCode}');
+        print(
+            'message upload failed with status code ${uploadResponse.statusCode}');
       }
     } catch (e) {
       print('message upload failed: $e');
