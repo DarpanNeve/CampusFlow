@@ -96,14 +96,13 @@ class OptionMenuPage extends StatelessWidget {
                 ),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(
                         height: 30,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           // Icon(
                           //   Icons.verified_user,
