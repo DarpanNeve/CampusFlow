@@ -131,7 +131,7 @@ class AuthService {
         throw Exception("Failed to fetch user data");
       }
     } on DioError catch (e) {
-      if (e.response != null) {
+      if (e.response == null) {
         // Server returned an error response
         print('Error Response:');
         print('Status: ${e.response!.statusCode}');
