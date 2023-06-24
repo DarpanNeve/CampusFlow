@@ -32,6 +32,7 @@ class OptionMenuPage extends StatelessWidget {
       ],
       [
         "Notices",
+
         Icons.newspaper,
         const MobileNotice(),
       ],
