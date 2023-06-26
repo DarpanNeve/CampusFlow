@@ -26,7 +26,7 @@ class OptionMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<List> listOfOptions = [
       [
-        "Time Table",
+        "Time Table ",
         Icons.schedule,
         const MobileTimeTable1(),
       ],
