@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student/roommate/mobile_find_roommate.dart';
 
 import 'Notice/mobile_notice.dart';
 import 'TimeTable/mobile_time_table_1.dart';
@@ -36,23 +37,23 @@ class OptionMenuPage extends StatelessWidget {
         Icons.newspaper,
         const MobileNotice(),
       ],
-      // [
-      //   "Room-mate",
-      //   Icons.person_outline,
-      //   const MobileFindRoommate(),
-      // ],
-      // [
-      //   "Lost n found",
-      //   Icons.search,
-      // ],
-      // [
-      //   "Old Books",
-      //   Icons.menu_book_sharp,
-      // ],
-      // [
-      //   "Calender",
-      //   Icons.calendar_month_outlined,
-      // ],
+      [
+        "Room-mate",
+        Icons.person_outline,
+        const MobileFindRoommate(),
+      ],
+      [
+        "Lost n found",
+        Icons.search,
+      ],
+      [
+        "Old Books",
+        Icons.menu_book_sharp,
+      ],
+      [
+        "Calender",
+        Icons.calendar_month_outlined,
+      ],
     ];
 
     return MaterialApp(
