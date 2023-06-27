@@ -94,7 +94,7 @@ class OptionMenuPage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
-                  color: Colors.lightBlue.shade200,
+                  color: Colors.white,
                 ),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -1,64 +1,81 @@
 {
   "project_info": {
-    "project_number": "140073654540",
-    "project_id": "pccoe-final-3b92c",
-    "storage_bucket": "pccoe-final-3b92c.appspot.com"
+    "project_number": "873112653322",
+    "firebase_url": "https://pccoe-final-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pccoe-final",
+    "storage_bucket": "pccoe-final.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:140073654540:android:2c0b1361a1af8c7b219129",
+        "mobilesdk_app_id": "1:873112653322:android:03919b8837ebe0168499f3",
         "android_client_info": {
           "package_name": "com.Pccoe.Student"
         }
       },
       "oauth_client": [
         {
-          "client_id": "140073654540-ici47qmavub3fl4b7bq8laeaq2k2emf2.apps.googleusercontent.com",
+          "client_id": "873112653322-2teauj87pnujic0q9eb5rn67p5bb64ab.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.Pccoe.Student",
-            "certificate_hash": "f6f9e0dd18ca7822ea250942b3ce9364941bc993"
+            "certificate_hash": "a44294915760f68c0e8c560c8ced6d3d10f6044e"
           }
         },
         {
-          "client_id": "140073654540-t4a34eg4cn558fimmrggt103c4lq3aks.apps.googleusercontent.com",
+          "client_id": "873112653322-4uirvd6rte0i2eumo792nheedrq3dfdh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.Pccoe.Student",
-            "certificate_hash": "056fe5861b2cd101664eda42098dac9f659d579d"
+            "certificate_hash": "066c7ec89f230d87e5d3b50b7a0f605aed2bdc2d"
           }
         },
         {
-          "client_id": "140073654540-vcjto0k43n2f3nhcjr1929bpim2gvl5o.apps.googleusercontent.com",
+          "client_id": "873112653322-6s23j60e9ah9hhv43p7h29jn84kb0ljn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.Pccoe.Student",
-            "certificate_hash": "c7f2331e754d3e3798465e4208fa254e0cac68a4"
+            "certificate_hash": "5c1d773e358098f9da6de2f670db8f03a1ba896f"
           }
         },
         {
-          "client_id": "140073654540-lvff8thgu18ivu3j1uconpfrnr6v6e8n.apps.googleusercontent.com",
+          "client_id": "873112653322-9and43jkr263icrf1ifog5q7d9tj0vjs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Pccoe.Student",
+            "certificate_hash": "daa90797a3b6d03a18f14605444a456667df62fc"
+          }
+        },
+        {
+          "client_id": "873112653322-n6m3b6qp89fjma8n9boevjih8afq1r0c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Pccoe.Student",
+            "certificate_hash": "27e8d078c1fbb3ef942e08811bfa823e4a96d24f"
+          }
+        },
+        {
+          "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBGWOaXHfrwHwSb4df2mUCWYMhkDM4rFyY"
+          "current_key": "AIzaSyAO5oN_z_GfGlepJVfpT06uHVINYUyEZFE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "140073654540-kh9cr1d5kfqvn6tj3v5gad51eo5sq0kf.apps.googleusercontent.com",
+              "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "140073654540-uabnstr5dj3gf6gfap8dot7klfvrf9ai.apps.googleusercontent.com",
+              "client_id": "873112653322-tq5hb5n7a3msqdqka1as1s2cop7nu5pl.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.Pccoe.student"
+                "bundle_id": "com.Pccoe.students"
               }
             }
           ]
@@ -67,42 +84,86 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:140073654540:android:fb6a5a5c4ecc43c1219129",
+        "mobilesdk_app_id": "1:873112653322:android:7a73bc48157a40288499f3",
         "android_client_info": {
           "package_name": "com.Pccoe.Teacher"
         }
       },
       "oauth_client": [
         {
-          "client_id": "140073654540-lnho6ob8iqpe7kn0sh17f2kvu5o0o2dh.apps.googleusercontent.com",
+          "client_id": "873112653322-2blge1oaob8690qv91s3cemm0qmet9ru.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.Pccoe.Teacher",
-            "certificate_hash": "c7f2331e754d3e3798465e4208fa254e0cac68a4"
+            "certificate_hash": "a44294915760f68c0e8c560c8ced6d3d10f6044e"
           }
         },
         {
-          "client_id": "140073654540-lvff8thgu18ivu3j1uconpfrnr6v6e8n.apps.googleusercontent.com",
+          "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBGWOaXHfrwHwSb4df2mUCWYMhkDM4rFyY"
+          "current_key": "AIzaSyAO5oN_z_GfGlepJVfpT06uHVINYUyEZFE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "140073654540-kh9cr1d5kfqvn6tj3v5gad51eo5sq0kf.apps.googleusercontent.com",
+              "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "140073654540-uabnstr5dj3gf6gfap8dot7klfvrf9ai.apps.googleusercontent.com",
+              "client_id": "873112653322-tq5hb5n7a3msqdqka1as1s2cop7nu5pl.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.Pccoe.student"
+                "bundle_id": "com.Pccoe.students"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873112653322:android:94a761edfeed9f138499f3",
+        "android_client_info": {
+          "package_name": "com.Pccoe.students"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873112653322-4llkd3fdgmtd3rkra80q05lgsc26kv7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Pccoe.students",
+            "certificate_hash": "c7f2331e754d3e3798465e4208fa254e0cac68a4"
+          }
+        },
+        {
+          "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO5oN_z_GfGlepJVfpT06uHVINYUyEZFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "873112653322-tq5hb5n7a3msqdqka1as1s2cop7nu5pl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Pccoe.students"
               }
             }
           ]
