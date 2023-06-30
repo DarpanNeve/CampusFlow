@@ -66,7 +66,7 @@ class OptionMenuPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         drawer: const SideDrawer(),
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.black),
+          iconTheme: const  IconThemeData(color: Colors.black),
           elevation: 0,
           centerTitle: true,
           title: const Text("Dashboard", style: TextStyle(color: Colors.black)),
