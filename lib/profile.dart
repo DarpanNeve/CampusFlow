@@ -89,24 +89,18 @@ class OptionMenuPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.4,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(22),
-                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 30,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     CircleAvatar(
                       radius: 40,
                       backgroundImage: NetworkImage(url),
                       backgroundColor: Colors.transparent,
-                    ),
-                    const SizedBox(
-                      width: 20,
                     ),
                     Text(
                       name,
@@ -118,15 +112,12 @@ class OptionMenuPage extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                height: MediaQuery.of(context).size.height * 0.55,
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                height: MediaQuery.of(context).size.height * 0.65,
                 width: MediaQuery.of(context).size.width,
                 child: GridView.builder(
-                  padding: const EdgeInsets.only(top: 30),
+                  padding: const EdgeInsets.only(top: 20),
                   itemCount: listOfOptions.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
