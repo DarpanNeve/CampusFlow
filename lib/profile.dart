@@ -33,7 +33,6 @@ class OptionMenuPage extends StatelessWidget {
       ],
       [
         "Notices",
-
         Icons.newspaper,
         const MobileNotice(),
       ],
@@ -66,7 +65,7 @@ class OptionMenuPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         drawer: const SideDrawer(),
         appBar: AppBar(
-          iconTheme: const  IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
           elevation: 0,
           centerTitle: true,
           title: const Text("Dashboard", style: TextStyle(color: Colors.black)),
@@ -94,45 +93,30 @@ class OptionMenuPage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
-                  color: Colors.white,
                 ),
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          // Icon(
-                          //   Icons.verified_user,
-                          //   size: 80,
-                          // ),
-                          CircleAvatar(
-                            radius: 40,
-                            backgroundImage: NetworkImage(url),
-                            backgroundColor: Colors.transparent,
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                name,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              Text(pRN),
-                              Text(rollNo),
-                            ],
-                          )
-                        ],
-                      )
-                    ]),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(url),
+                      backgroundColor: Colors.transparent,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      name,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    Text(pRN),
+                    Text(rollNo),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 5,
