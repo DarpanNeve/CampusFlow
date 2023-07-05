@@ -112,12 +112,8 @@ class AnotherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () async {
+      onPressed: () {
         AuthService().signInWithGoogle();
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const MyApp()),
-        );
       },
       child: const Text(
         "Login",
