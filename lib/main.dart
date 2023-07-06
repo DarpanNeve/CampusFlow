@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: Theme.of(context).copyWith(
         colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: const Color(0xFF81D4FA),
+              primary: const Color(0xFF8ED7FA),
             ),
       ),
       title: "Hello",
