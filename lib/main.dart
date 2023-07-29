@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:student/firebase_data/auth_service.dart';
 
@@ -16,9 +15,6 @@ Future<void> main() async {
   );
   if (defaultTargetPlatform == TargetPlatform.android ||
       defaultTargetPlatform == TargetPlatform.iOS) {
-    await FlutterDownloader.initialize(
-        debug: true // optional: set false to disable printing logs to console
-        );
     await Permission.storage.request();
   }
   runApp(
