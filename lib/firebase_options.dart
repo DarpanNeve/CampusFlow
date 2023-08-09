@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,46 +47,31 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA_lfrNAeUGRiVvBN8K8k8c4YdI97Tuqfw',
-    appId: '1:873112653322:web:60116e61061914168499f3',
-    messagingSenderId: '873112653322',
-    projectId: 'pccoe-final',
-    authDomain: 'pccoe-final.firebaseapp.com',
-    databaseURL: 'https://pccoe-final-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'pccoe-final.appspot.com',
-    measurementId: 'G-CN285K647Q',
+    apiKey: 'AIzaSyD8c1gd9GfG3UHHurMPPJtM1RYfy1Dmy4c',
+    appId: '1:331112345866:web:33d4cd599825343bfbcaf3',
+    messagingSenderId: '331112345866',
+    projectId: 'pccoestudents',
+    authDomain: 'pccoestudents.firebaseapp.com',
+    storageBucket: 'pccoestudents.appspot.com',
+    measurementId: 'G-NS0LGT4YEK',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAO5oN_z_GfGlepJVfpT06uHVINYUyEZFE',
-    appId: '1:873112653322:android:03919b8837ebe0168499f3',
-    messagingSenderId: '873112653322',
-    projectId: 'pccoe-final',
-    databaseURL: 'https://pccoe-final-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'pccoe-final.appspot.com',
+    apiKey: 'AIzaSyAy-twwK13Ot_SROdJR-wcEYIMVdV-K6Fw',
+    appId: '1:331112345866:android:16405e4f3292e245fbcaf3',
+    messagingSenderId: '331112345866',
+    projectId: 'pccoestudents',
+    storageBucket: 'pccoestudents.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAnaIJUByFVUyKST8uE0pWPtpmm5GxK3h4',
-    appId: '1:873112653322:ios:803045686ca8feaf8499f3',
-    messagingSenderId: '873112653322',
-    projectId: 'pccoe-final',
-    databaseURL: 'https://pccoe-final-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'pccoe-final.appspot.com',
-    androidClientId: '873112653322-2blge1oaob8690qv91s3cemm0qmet9ru.apps.googleusercontent.com',
-    iosClientId: '873112653322-0i6q5b2ovb97329qralj1q2avgage7uh.apps.googleusercontent.com',
-    iosBundleId: 'com.Pccoe.student',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAnaIJUByFVUyKST8uE0pWPtpmm5GxK3h4',
-    appId: '1:873112653322:ios:803045686ca8feaf8499f3',
-    messagingSenderId: '873112653322',
-    projectId: 'pccoe-final',
-    databaseURL: 'https://pccoe-final-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'pccoe-final.appspot.com',
-    androidClientId: '873112653322-2blge1oaob8690qv91s3cemm0qmet9ru.apps.googleusercontent.com',
-    iosClientId: '873112653322-0i6q5b2ovb97329qralj1q2avgage7uh.apps.googleusercontent.com',
+    apiKey: 'AIzaSyD1GktudfyGXeKx9yNejTBeqN3A6XSO330',
+    appId: '1:331112345866:ios:098806be8ca87afafbcaf3',
+    messagingSenderId: '331112345866',
+    projectId: 'pccoestudents',
+    storageBucket: 'pccoestudents.appspot.com',
+    androidClientId: '331112345866-7a08cluni6mpan1jec5oqcigb7f56hb0.apps.googleusercontent.com',
+    iosClientId: '331112345866-n2p4vds6t498u26b2ndr1gkuffdent76.apps.googleusercontent.com',
     iosBundleId: 'com.Pccoe.student',
   );
 }

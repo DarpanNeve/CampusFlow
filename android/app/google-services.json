@@ -1,37 +1,20 @@
 {
   "project_info": {
-    "project_number": "873112653322",
-    "firebase_url": "https://pccoe-final-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "pccoe-final",
-    "storage_bucket": "pccoe-final.appspot.com"
+    "project_number": "331112345866",
+    "project_id": "pccoestudents",
+    "storage_bucket": "pccoestudents.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:873112653322:android:03919b8837ebe0168499f3",
+        "mobilesdk_app_id": "1:331112345866:android:16405e4f3292e245fbcaf3",
         "android_client_info": {
           "package_name": "com.Pccoe.Student"
         }
       },
       "oauth_client": [
         {
-          "client_id": "873112653322-2teauj87pnujic0q9eb5rn67p5bb64ab.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Pccoe.Student",
-            "certificate_hash": "a44294915760f68c0e8c560c8ced6d3d10f6044e"
-          }
-        },
-        {
-          "client_id": "873112653322-4uirvd6rte0i2eumo792nheedrq3dfdh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Pccoe.Student",
-            "certificate_hash": "066c7ec89f230d87e5d3b50b7a0f605aed2bdc2d"
-          }
-        },
-        {
-          "client_id": "873112653322-6s23j60e9ah9hhv43p7h29jn84kb0ljn.apps.googleusercontent.com",
+          "client_id": "331112345866-7a08cluni6mpan1jec5oqcigb7f56hb0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.Pccoe.Student",
@@ -39,131 +22,27 @@
           }
         },
         {
-          "client_id": "873112653322-9and43jkr263icrf1ifog5q7d9tj0vjs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Pccoe.Student",
-            "certificate_hash": "daa90797a3b6d03a18f14605444a456667df62fc"
-          }
-        },
-        {
-          "client_id": "873112653322-n6m3b6qp89fjma8n9boevjih8afq1r0c.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Pccoe.Student",
-            "certificate_hash": "27e8d078c1fbb3ef942e08811bfa823e4a96d24f"
-          }
-        },
-        {
-          "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
+          "client_id": "331112345866-9651hrioo9a7lkmip9bj40vkjccalt65.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAO5oN_z_GfGlepJVfpT06uHVINYUyEZFE"
+          "current_key": "AIzaSyAy-twwK13Ot_SROdJR-wcEYIMVdV-K6Fw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
+              "client_id": "331112345866-9651hrioo9a7lkmip9bj40vkjccalt65.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "873112653322-tq5hb5n7a3msqdqka1as1s2cop7nu5pl.apps.googleusercontent.com",
+              "client_id": "331112345866-n2p4vds6t498u26b2ndr1gkuffdent76.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.Pccoe.students"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:873112653322:android:7a73bc48157a40288499f3",
-        "android_client_info": {
-          "package_name": "com.Pccoe.Teacher"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "873112653322-2blge1oaob8690qv91s3cemm0qmet9ru.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Pccoe.Teacher",
-            "certificate_hash": "a44294915760f68c0e8c560c8ced6d3d10f6044e"
-          }
-        },
-        {
-          "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAO5oN_z_GfGlepJVfpT06uHVINYUyEZFE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "873112653322-tq5hb5n7a3msqdqka1as1s2cop7nu5pl.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.Pccoe.students"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:873112653322:android:94a761edfeed9f138499f3",
-        "android_client_info": {
-          "package_name": "com.Pccoe.students"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "873112653322-4llkd3fdgmtd3rkra80q05lgsc26kv7u.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.Pccoe.students",
-            "certificate_hash": "c7f2331e754d3e3798465e4208fa254e0cac68a4"
-          }
-        },
-        {
-          "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAO5oN_z_GfGlepJVfpT06uHVINYUyEZFE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "873112653322-asbm6uhvint6h7n5tnkuh8bijmv13cvd.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "873112653322-tq5hb5n7a3msqdqka1as1s2cop7nu5pl.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.Pccoe.students"
+                "bundle_id": "com.Pccoe.student"
               }
             }
           ]
