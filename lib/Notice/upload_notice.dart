@@ -150,7 +150,7 @@ class _UploadBookDetailsState extends State<UploadBookDetails> {
                     )),
                 Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

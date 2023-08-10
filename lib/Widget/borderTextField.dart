@@ -8,9 +8,10 @@ class BorderedTextField extends StatelessWidget {
 
   BorderedTextField(
       {required this.hintText,
-        required this.labelText,
-        required this.fieldController,
-        required this.maxContentLines});
+      required this.labelText,
+      required this.fieldController,
+      required this.maxContentLines});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +24,7 @@ class BorderedTextField extends StatelessWidget {
               hintText: hintText,
               labelText: labelText,
               border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
         ));
   }
 }

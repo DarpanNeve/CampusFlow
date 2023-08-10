@@ -1,18 +1,18 @@
 class NoticeModel {
- late String iD;
- late String name;
- late String message;
- late String timestamp;
- late String title;
- late String docs;
+  late String iD;
+  late String name;
+  late String message;
+  late String timestamp;
+  late String title;
+  late String docs;
 
   NoticeModel(
       {required this.iD,
-        required this.name,
-        required this.message,
-        required this.title,
-        required this.timestamp,
-        required this.docs});
+      required this.name,
+      required this.message,
+      required this.title,
+      required this.timestamp,
+      required this.docs});
 
   NoticeModel.fromJson(dynamic json) {
     iD = json['ID'];
@@ -24,7 +24,7 @@ class NoticeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final data =<String, dynamic>{};
+    final data = <String, dynamic>{};
     data['ID'] = iD;
     data['Name'] = name;
     data['Title'] = title;

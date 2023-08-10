@@ -70,8 +70,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '331112345866',
     projectId: 'pccoestudents',
     storageBucket: 'pccoestudents.appspot.com',
-    androidClientId: '331112345866-7a08cluni6mpan1jec5oqcigb7f56hb0.apps.googleusercontent.com',
-    iosClientId: '331112345866-n2p4vds6t498u26b2ndr1gkuffdent76.apps.googleusercontent.com',
+    androidClientId:
+        '331112345866-7a08cluni6mpan1jec5oqcigb7f56hb0.apps.googleusercontent.com',
+    iosClientId:
+        '331112345866-n2p4vds6t498u26b2ndr1gkuffdent76.apps.googleusercontent.com',
     iosBundleId: 'com.Pccoe.student',
   );
 }

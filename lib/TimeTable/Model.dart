@@ -8,28 +8,20 @@ class Model {
   late String classroom;
   late String teacher;
   late String type;
+
   Model({
-
-      required this.day,
-
-      required this.division,
-
-      required this.start,
-
-      required this.end,
-
-      required this.subject,
-
-      required this.batch,
-
-      required this.classroom,
-
-      required this.teacher,
-
-      required this.type,});
+    required this.day,
+    required this.division,
+    required this.start,
+    required this.end,
+    required this.subject,
+    required this.batch,
+    required this.classroom,
+    required this.teacher,
+    required this.type,
+  });
 
   Model.fromJson(dynamic json) {
-
     day = json['Day'];
     division = json['Division'];
     start = json['Start'];
@@ -54,5 +46,4 @@ class Model {
     map['Type'] = type;
     return map;
   }
-
 }

@@ -1,16 +1,16 @@
 class RoommateModel {
- late String iD;
- late String name;
- late String message;
- late String timestamp;
- late String docs;
+  late String iD;
+  late String name;
+  late String message;
+  late String timestamp;
+  late String docs;
 
   RoommateModel(
       {required this.iD,
-        required this.name,
-        required this.message,
-        required this.timestamp,
-        required this.docs});
+      required this.name,
+      required this.message,
+      required this.timestamp,
+      required this.docs});
 
   RoommateModel.fromJson(dynamic json) {
     iD = json['ID'];
@@ -21,7 +21,7 @@ class RoommateModel {
   }
 
   Map<String, dynamic> toJson() {
-    final data =<String, dynamic>{};
+    final data = <String, dynamic>{};
     data['ID'] = iD;
     data['Name'] = name;
     data['Message'] = message;
